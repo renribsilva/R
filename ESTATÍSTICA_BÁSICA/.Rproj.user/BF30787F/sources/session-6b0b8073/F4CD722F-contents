@@ -1,0 +1,51 @@
+binomial_table <- function(k, n, p) {
+  
+  # Verificar se n é um número natural positivo
+  if (length(n) != 1 || !is.numeric(n) || n <= 0 || n %% 1 != 0) {
+    stop("n deve ser um número natural positivo.")
+  }
+  
+  # Verificar se max(k) não é maior que n
+  if (max(k) > n) {
+    stop("O valor máximo de k não pode ser maior que n.")
+  }
+  
+  # Título da tabela
+  cat("\t\t", "Distribuição binomial: X ~ b(n, p)", "\n")
+  cat("\n")
+  
+  if(missing(p)) p <-  seq(0.05, 0.95, by = 0.15)
+  
+  # Cabeçalho da tabela
+  cat("k/p\t")
+  for (j in p) {
+    cat(format(round(j, digits = 3), scientific = FALSE), "\t", sep = "")
+  }
+  
+  cat("\n")
+  
+  # Para cada valor de k
+  for (i in k) {
+    
+    if (i > n) {
+      stop("O valor de k não pode ser maior que n")
+    }
+    
+    cat(i, "\t")
+    
+    # Para cada valor de p
+    for (a in p) {
+      b <- (choose(n, i) * (a^i) * ((1 - a)^(n - i)))
+      cat(format(round(b, digits = 4), scientific = FALSE), "\t", sep = "")
+    }
+    
+    cat("\n")
+    
+  }
+  
+  # Rodapé
+  cat("\n\n")
+  cat("Corpo da tabela dá as probabilidades P(X = k), k = 0, 1, ..., n", "\n")
+  cat("\n")
+  
+}

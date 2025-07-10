@@ -1,0 +1,8 @@
+df_map <- read_map("~/TABWIN/MAPAS/br_municip.MAP")
+levels(df_map$id)
+
+
+ggplot(df_map) +
+  geom_polygon(mapping = aes(x = x, y = y, fill = id))
+
+               

@@ -1,0 +1,15 @@
+# Instale o pacote 'sf' se ainda não estiver instalado
+install.packages("sf")
+
+# Carregue a biblioteca
+library(sf)
+
+# Substitua 'caminho/do/arquivo/arquivo.shp' pelo caminho do seu arquivo .shp
+# Certifique-se de incluir todos os arquivos do shapefile (arquivos .shp, .shx, .dbf, etc.)
+dados_shp <- st_read("~/R/MAPAS_IBGE/BR_Pais_2022/BR_Pais_2022.shp")
+
+dados_shp$NM_PAIS
+
+ggplot() +
+  geom_sf(data = dados_shp)
+st_rea

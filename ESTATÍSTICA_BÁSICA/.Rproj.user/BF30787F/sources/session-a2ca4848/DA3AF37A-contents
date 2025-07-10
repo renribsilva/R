@@ -1,0 +1,34 @@
+###############################################################################
+############################## Script Tabela 4.4 ##############################
+###############################################################################
+
+# Executa a base de dados
+source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+
+# Cria a tabela A
+tab4_4a <- table(tab2_1$Região_de_Procedência, tab2_1$Grau_de_Instrução) %>%
+  prop.table(margin = 2)*100
+
+# Cria a tabela B
+tab4_4b <- table(tab2_1$Região_de_Procedência, tab2_1$Grau_de_Instrução) %>%
+  prop.table(margin = 1)*100
+
+# Distribuição conjunta das proporções (em porcentagem) em relação 
+# aos totais de cada coluna
+total_linha <- apply(tab4_4a, MARGIN = 2, FUN = sum)
+total_coluna <- table(tab2_1$Região_de_Procedência) %>% prop.table()*100
+tab4_4a <- rbind(cbind(tab4_4a, total_coluna), c(total_linha, sum(total_coluna)))
+
+# Distribuição conjunta das proporções (em porcentagem) em relação 
+# ao total das linhas
+total_coluna <- apply(tab4_4b, MARGIN=1, FUN=sum)
+total_linha <- table(tab2_1$Grau_de_Instrução) %>% prop.table()*100
+tab4_4b <- rbind(cbind(tab4_4b, total_coluna), c(total_linha, sum(total_linha)))
+
+# Dá nome à linha com totais
+dimnames(tab4_4a)[[1]][4] <- "total_linha" 
+dimnames(tab4_4b)[[1]][4] <- "total_linha" 
+
+# Imprime a tabela
+print(tab4_4a)
+print(tab4_4b)

@@ -1,0 +1,2 @@
+Poisson_table(1, lambda = 4, t = 0.5)*Poisson_table(4, lambda = 4, t = 2)
+cumsum(dpois(0:3, lambda = 5))

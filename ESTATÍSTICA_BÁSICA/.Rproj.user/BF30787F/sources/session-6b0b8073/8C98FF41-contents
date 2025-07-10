@@ -1,0 +1,29 @@
+binomial_table <- function(k, n, p) {
+  
+  # Verifica os argumentos
+  if(missing(p)) p <- seq(0.05, 0.95, by = 0.15)
+  if (length(n) != 1 || !is.numeric(n) || n <= 0 || n %% 1 != 0) stop("n deve ser um número natural positivo")
+  if (max(k) > n) stop("O valor máximo de k não pode ser maior que n")
+  
+  # Cria uma matriz vazia
+  m <- matrix(NA, nrow = length(k), ncol = length(p))
+  
+  # # Título da tabela
+  # cat("\t\t", "Distribuição binomial: X ~ b(n, p)", "\n")
+  # cat("\n")
+  
+  # Para cada valor de k
+  for (i in seq_along(k)) {
+    
+    for (j in seq_along(p)) {
+      m[i, j] <- round((choose(n, k[i]) * (p[j]^k[i]) * ((1 - p[j])^(n - k[i]))), digits = 4)
+      
+    }
+  }
+  
+  
+  return(m)
+  
+}
+
+binomial_table(0, 10)

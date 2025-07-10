@@ -1,0 +1,151 @@
+# $data and $mapping
+# Os argumentos podem ser omitidos se forem definidos nas camadas; (colour = )
+# define uma variável a ser mapeada; (group = ) define uma variável a ser 
+# agrupada; os argumentos de aes() podem receber funções
+gg <- ggplot(data, aes(x = , y = , colour = , group =)) 
+
+#$LAYERS
+
+  geom_XXX(
+    
+    # Mapping use the aes() function and combined its aesthetics with the plot
+    # defaults. However, the default mappings created in the plot can be 
+    # extended, overridden or remove here. The results affects only the 
+    # current layer. For that reason, unless you modify the default scales,
+    # axis labels and legend titles will be based on the plot defaults. 
+    # Beside, each layer could be group individually
+    mapping  = aes(),
+    
+    # Data could overrides the default plot dataset. It is most commonly
+    # omitted, in which case the layer will use the default plot data
+    data = ,
+    
+    # Stat override the default stat for a geom_XXX and usually creates
+    # news variables that could be used in other geoms or stats
+    stat = ,
+    
+    # Parameters for a specific geom_XXX
+    ... = ,
+    
+    # Aesthetic properties as parameters. Here we set the aesthetic property 
+    # to a fixed value, not map it to a variable in the dataset. 
+    ... = ,
+    
+    # Position choose a method for adjusting overlapping objects
+    position = )
+  
+  # Mostra os nomes das variáveis do dataset orginal e das que possivelmente
+  # foram criados pelo geom_XXX
+  names(gg)
+  
+  stat_XXX(
+    
+    # Mapping use the aes() function and combined its aesthetics with the plot
+    # defaults. However, the default mappings created in the plot can be 
+    # extended, overridden or remove here. The results affects only the 
+    # current layer. For that reason, unless you modify the default scales,
+    # axis labels and legend titles will be based on the plot defaults. 
+    # Beside, each layer could be group individually
+    mapping  = aes(),
+    
+    # Data could overrides the default plot dataset. It is most commonly
+    # omitted, in which case the layer will use the default plot data
+    data = ,
+    
+    # Geom override the default stat for a stat_XXX and usually creates
+    # news variables that could be used in other geoms or stats
+    geom = ,
+    
+    # Parameters for a specific stat_XXX
+    ... = ,
+    
+    # Aesthetic properties as parameters. Here we set the aesthetic property 
+    # to a fixed value, not map it to a variable in the dataset. 
+    ... = ,
+    
+    # Position choose a method for adjusting overlapping objects
+    position = )
+  
+  # Mostra os nomes das variáveis do dataset orginal e das que possivelmente
+  # foram criados pelo stat_XXX
+  names(gg)
+
+# $SCALES
+  # All scale constructors have a common naming scheme. They start with 
+  # scale_, followed by the name of the aesthetic (e.g., colour_, shape_ or x_),
+  # and finally by the name of the scale (e.g., gradient, hue or manual)
+    scale_XXX_YYY(
+    
+    # sets the label which will appear on the axis or legend. It can supply 
+    # text strings (using \n for line breaks) or mathematical expressions 
+    # (as described by ?plotmath)
+    name = , 
+    
+    # affect what appears on the plot, fixing the domain of the scale
+    limits = ,
+    
+    # affect what appears on the axes and legends; controls which values 
+    # appear on the axis or legend, i.e., what values tick marks should appear 
+    # on an axis or how a continuous scale is segmented in a legend
+    breaks = , 
+    
+    # specifies the labels that should appear at the breakpoints. If labels 
+    # is set, you must also specify breaks, so that the two can be matched 
+    # up correctly.
+    labels = ,
+    
+    # if no labels are specified the formatter will be called on each break 
+    # to produce the label. Useful formatters for continuous scales are 
+    # comma, percent, dollar and scientific, and for discrete scales is 
+    # abbreviate
+    formatter = , 
+    
+    # works for any continuous scale, including the colour gradients
+    trans = , 
+    
+    #  specify the position of major breaks in terms of date units, years, 
+    # months, weeks, days, hours, minutes and seconds, and can be combined 
+    # with a multiplier
+    major = , 
+    
+    #  specify the position of minor breaks in terms of date units, years, 
+    # months, weeks, days, hours, minutes and seconds, and can be combined 
+    # with a multiplier      
+    minor = , 
+    
+    # specifies how the tick labels should be formatted for a data scale
+    format = ,
+    
+    # control the colours at either end of the gradient
+    low = , 
+    
+    # control the colours at either end of the gradient
+    high = ,
+    
+    # the palettes most of interest are “Set1” and “Dark2” for points 
+    # and “Set2”, “Pastel1”, “Pastel2” and “Accent” for areas
+    pal = )
+    
+  xlim() 
+  ylim()
+  
+#$COORDINATES
+  
+  # any data outside the limits is not plotted and not included in the
+  # statistical transformation. This means that setting the limits is not 
+  # the same as visually zooming in to a region of the plot. To do that, 
+  # you need to use the xlim and ylim arguments to coord_cartesian()
+  coord_XXX(xlim = ,
+            ylim = ,
+            expand = c()) # control the amount of expansion. This parameter should be a numeric vector of length two. The first element gives the multiplicative expansion, and the second the additive expansion
+  
+  #$facet
+  
+  #$theme
+  
+  #$annotatings
+  xlab()
+  ylab()
+  labs()
+  
+  

@@ -1,0 +1,20 @@
+Theme | element | Type Description
+axis.line | segment | line along axis
+axis.text.x | text | x axis label
+axis.text.y | text | y axis label
+axis.ticks | segment | axis tick marks
+axis.title.x | text | horizontal tick labels
+axis.title.y | text | vertical tick labels
+legend.background | rect | background of legend
+legend.key | rect | background underneath legend keys
+legend.text | text | legend labels
+legend.title | text | legend name
+panel.background | rect | background of panel
+panel.border | rect | border around panel
+panel.grid.major | line | major grid lines
+panel.grid.minor | line | minor grid lines
+plot.background | rect | background of the entire plot
+plot.title | text | plot title
+strip.background | rect | background of facet labels
+strip.text.x | text | text for horizontal strips
+strip.text.y | text | text for vertical strips

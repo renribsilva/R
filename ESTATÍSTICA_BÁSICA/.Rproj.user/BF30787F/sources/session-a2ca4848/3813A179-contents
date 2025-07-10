@@ -1,0 +1,21 @@
+###############################################################################
+############################## Script Tabela 4.4 ##############################
+###############################################################################
+
+# Monta a base de dados
+tab4_6 <-as.table(matrix(c(85,55,35,25), ncol = 2))
+
+# Dá nome às linhas e colunas
+dimnames(tab4_6)[[1]] <- c("Economia", "Administração")
+dimnames(tab4_6)[[2]] <- c("Masculino", "Feminino")
+
+# Cria a tabela 4.6
+tab4_6 <- prop.table(tab4_6,2)
+Total_linha <- margin.table(tab4_6,2)
+Total_coluna <- margin.table(tab4_6,1)/sum(margin.table(tab4_6,1))
+tab4_6 <- (rbind(cbind(tab4_6,Total_coluna),c(Total_linha, sum(Total_coluna))))*
+  100
+dimnames(tab4_6)[[1]][3]<-"Total_linha" 
+
+# Imprime a tabela
+print(tab4_6)

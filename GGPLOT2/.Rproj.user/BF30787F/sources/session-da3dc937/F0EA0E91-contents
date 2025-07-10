@@ -1,0 +1,24 @@
+# Requre o pacote readr e stringi
+library(readr)
+
+# Lê como arquivo separado por espaços em branco
+tb_aes <- read_table2("~/R/GGPLOT2/Aes.txt")
+
+# Converte em data frame
+df_aes <- as.data.frame(tb_aes)
+
+# Dá nome às variáveis
+names(df_aes) <- c(v1="Name", 
+                   v2="Default stat",
+                   v3="Aes1",
+                   v4="Aes2",
+                   v5="Aes3",
+                   v6="Aes4",
+                   v7="Aes5",
+                   v8="Aes6",
+                   v9="Aes7",
+                   v10="Aes8",
+                   v11="Aes9",
+                   v12="Aes10")
+
+View(df_aes)

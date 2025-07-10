@@ -1,0 +1,77 @@
+qq_plot <- function(data, var1, var2) {
+  
+  # Verifica se as variáveis de entrada existem no conjunto de dados
+  if (!(var1 %in% colnames(data)) || !(var2 %in% colnames(data))) {
+    stop("Uma ou ambas as variáveis de entrada não estão presentes no conjunto de dados.")
+  }
+  
+  # Obtenção dos índices das variáveis
+  index_var1 <- which(colnames(data) == var1)
+  index_var2 <- which(colnames(data) == var2)
+  
+  # Remove os valores NA e obtém o comprimento das variáveis
+  length_var1 <- length(data[[index_var1]] %>% na.omit())
+  length_var2 <- length(data[[index_var2]] %>% na.omit())
+  
+  # Seleciona a variável com o menor comprimento
+  smaller_length <- min(length_var1, length_var2)
+  larger_length <- max(length_var1, length_var2)
+  
+  # Verifica se os comprimentos das variáveis são iguais
+  if (smaller_length != larger_length) {
+    # Cria os quantis esperados
+    quantiles <- ((larger_length/smaller_length)*(1:smaller_length-0.5)) + 0.5
+    
+    # Verifica se os quantis são inteiros
+    if (!(all(as.integer(quantiles) == quantiles))) {
+      stop("O valor de 'r', em 'j=k+r', não é único.")
+    }
+    
+    # Arredonda os quantis
+    rounded_quantiles <- floor(quantiles)
+    remainder <- round(quantiles %% 1, digits = 2)
+    
+    # Calcula os quantis
+    qx <- numeric()
+    for (i in 1:length(rounded_quantiles)) {
+      qx <- c(qx, ((1 - remainder[i]) * data[[ifelse(length_var1 > length_var2, index_var2, index_var1)]][rounded_quantiles[i]] + remainder[i] * data[[ifelse(length_var1 > length_var2, index_var2, index_var1)]][rounded_quantiles[i] + 1]))
+    }
+    
+    # Obtém os rótulos das variáveis
+    label_x <- ifelse(length_var1 > length_var2, var1, var2)
+    label_y <- ifelse(length_var1 > length_var2, var2, var1)
+    
+    # Cria o dataframe para o gráfico
+    df <- data.frame(x = qx, y = na.omit(data[[ifelse(length_var1 > length_var2, index_var2, index_var1)]]))
+    
+    # Cria o gráfico QQ
+    gg <- ggplot(df, mapping = aes(x = x, y = y)) +
+      geom_point() +
+      geom_abline(intercept = 0, slope = 1) +
+      labs(x = label_x,
+           y = label_y,
+           title = paste("Gráfico Q-Q para as variáveis:", label_x, "(eixo x) e", label_y, "(eixo y)")) +
+      theme(panel.background = element_blank(),
+            panel.border = element_rect(colour = "black", fill = NA))
+    
+    return(gg)
+    
+  } else {
+    # Se os comprimentos das variáveis são iguais, apenas plote os dados diretamente
+    label_x <- colnames(data)[index_var1]
+    label_y <- colnames(data)[index_var2]
+    
+    gg <- ggplot(data, mapping = aes(x = data[[index_var1]], y = data[[index_var2]])) +
+      geom_point() +
+      geom_abline(intercept = 0, slope = 1) +
+      labs(x = label_x,
+           y = label_y,
+           title = paste("Gráfico Q-Q para as variáveis:", label_x, "(eixo x) e", label_y, "(eixo y)")) +
+      theme(panel.background = element_blank(),
+            panel.border = element_rect(colour = "black", fill = NA))
+    
+    return(gg)
+  }
+}
+
+qq_plot(df, var1 = "x", var2 = "y")

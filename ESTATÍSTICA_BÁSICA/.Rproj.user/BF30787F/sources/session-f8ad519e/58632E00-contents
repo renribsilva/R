@@ -1,0 +1,9 @@
+###############################################################################
+############################# Script Exemplo 4.13 #############################
+###############################################################################
+
+source("./AN_EX_DADOS/INPUT/INPUT_Tab_CD_Mercado.R")
+
+source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/BI/corr_table.R")
+
+corr_table(tab_CD_mercado, var1 = "Telebrás", var2 = "Ibovespa")

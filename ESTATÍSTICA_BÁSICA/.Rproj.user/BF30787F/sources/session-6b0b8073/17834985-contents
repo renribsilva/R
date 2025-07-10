@@ -1,0 +1,31 @@
+chisq_table2 <- function(df, alpha = seq(0.95, 0.05, by = -0.15)) {
+  
+  #Título da tabela
+  cat("\t\t  ", "Tabela de distribuição do Qui-quadrado: Y~X^2(v)", "\n")
+  cat("\n")
+  
+  # Cabeçalho da tabela
+  cat("df\t")
+  for (j in alpha) {
+    cat(j, "\t")
+  }
+  
+  cat("\n")
+  
+  # Para cada grau de liberdade
+  for (i in df) {
+    cat(i, "\t")
+    
+    # Para cada nível de significância
+    for (a in alpha) {
+      valor_critico <- qchisq(1 - a, i)
+      cat(round(valor_critico, 3), "\t")
+    }
+    #Rodapé
+    cat("\n\n")
+    cat("Corpo da tabela dá os valores yc tais que P(Y>yc)=p", "\n")
+    cat("\n")
+  }
+}
+
+chisq_table2(0:6)

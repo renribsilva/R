@@ -1,0 +1,18 @@
+var_aleatória <- function (data, var) {
+  
+  data  <-  df6_2
+  v <- which( var == colnames(data))
+  unique_values <- unique(df6_2[[v]])
+  m <- matrix(0, length(unique_values), 2, dimnames = list(c(),c("x", "p(x)")))
+  
+  for (i in seq_along(unique_values)) {
+    m[i,] <- df6_2 %>%
+      dplyr::filter(Lucro_montagem_X == unique_values[i]) %>%
+      dplyr::select(Probabilidade) %>%
+      apply(MARGIN = 2, FUN = sum) %>%
+      cbind(unique_values[i], deparse.level = 0)
+  }
+  
+  m
+  
+}

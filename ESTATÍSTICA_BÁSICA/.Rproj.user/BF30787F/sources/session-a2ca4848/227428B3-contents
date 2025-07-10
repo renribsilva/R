@@ -1,0 +1,34 @@
+###############################################################################
+############################## Script Tabela 4.2 ##############################
+###############################################################################
+
+# Executa a base de dados
+source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+
+# Cria a tabela
+tab4_2 <- table(tab2_1$Região_de_Procedência, tab2_1$Grau_de_Instrução)
+
+# Adiciona linha e coluna com os totais
+total_linha <- apply(tab4_2, MARGIN=2, FUN=sum)
+total_coluna <- apply(tab4_2, MARGIN=1, FUN=sum)
+tab4_2 <- rbind(cbind(tab4_2, total_coluna), c(total_linha, sum(total_coluna)))
+
+# Dá nome à linha com totais
+dimnames(tab4_2)[[1]][4] <- "total_linha" 
+
+# Imprime a tabela
+print(tab4_2)
+
+# Utilizando pacote {gmodel}
+# prop.r = TRUE retorna as proporções nas linhas
+# prop.c = TRUE retorna as proporções nas colunas
+# prop.t = TRUE retorna as proporções em relação ao total
+# prop.chisq = TRUE retorna a contribuição de cada casela para a estatística de Qui-quadrado
+
+CrossTable(tab2_1$Região_de_Procedência,
+           tab2_1$Grau_de_Instrução,
+           prop.r=FALSE, prop.c=FALSE, prop.t=TRUE, prop.chisq=FALSE)
+
+CrossTable(tab2_1$Região_de_Procedência,
+           tab2_1$Grau_de_Instrução,
+           prop.r=FALSE, prop.c=TRUE, prop.t=FALSE, prop.chisq=FALSE)

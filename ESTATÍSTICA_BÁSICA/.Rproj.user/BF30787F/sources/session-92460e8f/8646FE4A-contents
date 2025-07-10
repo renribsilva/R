@@ -1,0 +1,21 @@
+tab <- table(tab2_1$Região_de_Procedência, tab2_1$Grau_de_Instrução)
+tab
+tab4_4
+
+apply(tab, MARGIN = 2, FUN = sum)
+  apply(prop.table(tab), MARGIN=1, FUN = sum)[1]
+apply(tab, MARGIN = 2, FUN = sum)[1]
+purrr::map2(tab, 1, ~paste0(.x, "(", .y, "%)"))
+
+#  ~paste0(.x, "(", .y, "%)"))
+
+t <- tab4_4a
+
+# ~paste0(.x, "(", .y, "%)"))
+
+for(j in 1:dim(tab)[2]) {
+  for(i in 1:dim(tab)[1]) {
+    t[i,j] <- purrr::map2(tab_abs, tab_rel_1, ~paste0(.x, "(", .y, "%)"))
+  }
+}
+t

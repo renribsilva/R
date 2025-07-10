@@ -1,0 +1,31 @@
+###############################################################################
+############################## Script Tabela 4.4 ##############################
+###############################################################################
+
+# Executa a base de dados
+source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+
+# Executa o script da função dist_conj
+source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/BI/dist_conj.R")
+
+# Monta a tabela de distribuição conjunta das proporções (em porcentagem)
+# em relação aos totais de cada coluna da variável X
+tab4_4a <- dist_conj(tab2_1, 
+                    varx = "Grau_de_Instrução",
+                    vary = "Região_de_Procedência",
+                    dist = "rel",
+                    margin = 2,
+                    expected = F)
+
+# Monta a tabela de distribuição conjunta das proporções (em porcentagem)
+# em relação aos totais de cada linha da variável Y
+tab4_4b <- dist_conj(tab2_1, 
+                     varx = "Grau_de_Instrução",
+                     vary = "Região_de_Procedência",
+                     dist = "rel",
+                     margin = 1,
+                     expected = F)
+
+# Imprime a tabela
+print(tab4_4a)
+print(tab4_4b)

@@ -1,0 +1,27 @@
+{
+    "id": "0110FCA7",
+    "path": "~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_4_ANÁLISE_BIDIMENSIONAL/4_7_GRÁF_QQ/Fig4_10.R",
+    "project_path": "AN_EX_DADOS/CAP_4_ANÁLISE_BIDIMENSIONAL/4_7_GRÁF_QQ/Fig4_10.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": true,
+    "created": 1709774939320.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "6,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1709752927,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1709777030537,
+    "read_only": false,
+    "read_only_alternatives": []
+}

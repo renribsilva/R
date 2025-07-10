@@ -1,0 +1,20 @@
+###############################################################################
+############################## Script Tabela 4.7 ##############################
+###############################################################################
+
+# Monta a base de dados
+tab4_7 <- data.frame(rbind(
+  matrix(rep(c("1.Masculino","1.Física"),times=100),ncol=2,byrow=T),
+  matrix(rep(c("2.Feminino","1.Física"),times=20),ncol=2,byrow=T),
+  matrix(rep(c("1.Masculino","2.Ciências Sociais"),times=40),ncol=2,byrow=T),
+  matrix(rep(c("2.Feminino","2.Ciências Sociais"),times=40),ncol=2,byrow=T)))
+
+# Dá nome às colunas
+colnames(tab4_7) <-c ("sexo","curso")
+
+# Monta a tabela
+tab4_7 <- CrossTable(tab4_7$curso, tab4_7$sexo, prop.r=TRUE, prop.c=FALSE,
+           prop.t=FALSE, prop.chisq=FALSE)
+
+# Imprime o dataframe
+print(tab4_7)

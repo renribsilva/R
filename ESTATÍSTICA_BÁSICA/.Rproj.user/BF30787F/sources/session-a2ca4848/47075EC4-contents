@@ -1,0 +1,23 @@
+###############################################################################
+############################## Script Tabela 4.2 ##############################
+###############################################################################
+
+# Executa a base de dados
+source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+
+# Anexa a base de dados nos caminho de pesquisa do R
+attach(tab2_1)
+
+# Cria a tabela
+tab4_2 <- table(Região_de_Procedência, Grau_de_Instrução)
+
+# Adiciona linha e coluna com os totais
+total_linha <- apply(tab4_2, MARGIN=2, FUN=sum)
+total_coluna <- apply(tab4_2, MARGIN=1, FUN=sum)
+tab4_2 <- rbind(cbind(tab4_2, total_coluna), c(total_linha, sum(total_coluna)))
+
+# Dá nome à linha com totais
+dimnames(tab4_2)[[1]][4] <- "total_linha" 
+
+# Imprime a tabela
+print(tab4_2)

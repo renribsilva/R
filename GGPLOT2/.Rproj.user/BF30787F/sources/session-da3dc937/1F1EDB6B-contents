@@ -1,0 +1,12 @@
+# Requre o pacote readr e stringi
+library(readr)
+
+# Lê um arquivo txt
+file_geoms <- read_delim("~/R/GGPLOT2/Geoms.txt", delim="|")
+
+# Converte em data frame
+file_geoms <- as.data.frame(file_geoms)
+
+# Visualiza a tabela
+View(file_geoms)
+

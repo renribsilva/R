@@ -1,0 +1,19 @@
+chisq_table <- function(df, alpha) {
+  
+  if (missing(alpha)) alpha <- seq(0.95, 0.05, by = -0.15)
+  
+  m <- matrix(NA, nrow = df, ncol = length(alpha) + 1)
+  
+  # Nome das linhas da matriz
+  table_matrix[, 1] <- c(1:df)
+  
+  
+  for (j in seq_along(alpha)) {
+    table_matrix[, j + 1] <- round(qchisq(1 - alpha[j], df), 3)
+  }
+  
+  colnames(table_matrix) <- c("df", as.character(alpha))
+  
+  return(table_matrix)
+  
+}

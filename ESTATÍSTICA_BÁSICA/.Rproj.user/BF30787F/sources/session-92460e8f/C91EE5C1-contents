@@ -1,0 +1,20 @@
+###############################################################################
+############################## Script Tabela 4.3 ##############################
+###############################################################################
+
+# Executa a base de dados
+source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+
+# Executa o script da função dist_conj
+source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/dist_conj.R")
+
+# Monta a tabela de distribuição conjunta das proporções (em porcentagem)
+# em relação ao total geral das variáveis X e Y
+tab4_3 <- dist_conj2(tab2_1, 
+                    vary = "Região_de_Procedência",
+                    varx = "Grau_de_Instrução",
+                    freq = "relativa",
+                    margin = 0)
+
+# Imprime a tabela
+print(tab4_3)

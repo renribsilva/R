@@ -1,0 +1,46 @@
+tab <- table(tab2_1$Região_de_Procedência, tab2_1$Grau_de_Instrução)
+tab
+t <- tab
+
+t[,1]
+t[,2]
+t[,3]
+
+r <- matrix(nrow = 1, ncol = dim(tab)[2])
+c <- matrix(nrow = dim(tab)[1], ncol = 1)
+
+mar1 <- apply(tab, MARGIN = 1, FUN = sum)
+mar2 <- apply(tab, MARGIN = 2, FUN = sum)
+# Mapeamento
+row_total <- purrr::map2(r, mar2,\(r, mar2) mar2)
+unlist(row_total)
+col_total <- purrr::map2(c, mar1,\(c, mar1) mar1)
+col_total
+
+t[1,1] <- prop.table(row_total)[1]
+t[2,1] <- prop.table(row_total)[1]
+t[3,1] <- prop.table(row_total)[1]
+
+t[1,2] <- prop.table(row_total)[2]
+t[2,2] <- prop.table(row_total)[2]
+t[3,2] <- prop.table(row_total)[2]
+
+t[1,3] <- prop.table(row_total)[3]
+t[2,3] <- prop.table(row_total)[3]
+t[3,3] <- prop.table(row_total)[3]
+
+tr <- t
+
+
+
+for(i in 1:dim(tab)[1]) {
+  for(j in 1:dim(tab)[2]) {
+    
+    t[i,j] <- round(prop.table(row_total)[j]*col_total[i], digits = 0)
+    
+  }
+}
+
+str(t)
+
+prop.table(apply(tab, MARGIN = 1, FUN = sum))

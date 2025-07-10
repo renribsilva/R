@@ -1,0 +1,11 @@
+# Requre o pacote readr e stringi
+library(readr)
+
+# Lê um arquivo txt
+file_scale <- read_delim("~/R/GGPLOT2/Scale.txt", delim="|")
+
+# Converte em data frame
+df_scale <- as.data.frame(file_scale)
+
+# Visualiza a tabela
+View(df_scale)

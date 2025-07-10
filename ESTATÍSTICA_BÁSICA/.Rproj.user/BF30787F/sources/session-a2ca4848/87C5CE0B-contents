@@ -1,0 +1,20 @@
+# Determina o número de classes que dados contínuos podem ter, de tal modo
+# que aprensentem a menor distância em relação à curva de densidade, em
+# acordo com as proposições de Freedman e Diaconis (1981)
+
+coef_sim <- function(x, col = "nome_da_coluna") {
+  
+  # Cria objetos para a função
+  nomes_colunas <- colnames(x)
+  nomes_colunas
+  p <- which(nomes_colunas == col)
+  
+  # Realiza as operações matemáticas para encontrar o número de classes
+  dq <- summary(x[[p]])[[5]] - summary(x[[p]])[[2]]
+  q1 <- summary(x[[p]])[[2]]
+  q2 <- summary(x[[p]])[[3]]
+  q3 <- summary(x[[p]])[[5]]
+  
+  A <- ((q3-q2)-(q2-q1))/(q3-q1)
+  return(A)
+}

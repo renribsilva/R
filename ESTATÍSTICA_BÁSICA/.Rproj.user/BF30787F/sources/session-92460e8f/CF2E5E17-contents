@@ -1,0 +1,103 @@
+dist_conj <- function(data, 
+                      vary = "variável distribuída na vertical", 
+                      varx = "variável distribuída na horizontal", 
+                      freq = "absoluta, relativa ou ambas",
+                      margin = "0, 1 ou 2") {
+  
+  # Mensagem de erro nas variáveis de interesse
+  if (!(vary %in% names(data)) || !(varx %in% names(data))) {
+    stop("As variáveis especificadas não estão presentes nos dados.")
+  }
+  
+  # Mensagem de erro na especificação da frequência
+  if (is.null(freq) || !(freq %in% c("absoluta", "relativa", "ambas"))) {
+    stop("Frequência não especificada ou incorreta")
+  }
+  
+  # Mensagem de erro na especificação da margin
+  if ((freq %in% c("relativa", "ambas")) &
+      ((is.null(margin)) ||
+       !(margin %in% c(0,1,2)))){
+    stop("Margin não especificada ou incorreta")
+  }
+  
+  # Cria objetos para a posição das variáveis no data frame
+  vx <- match(varx, names(data))
+  vy <- match(vary, names(data))
+  
+  # Cria uma matrix com a distribuição conjunta em frequência absoluta
+  tab <- table(data[[vy]], data[[vx]])
+  
+  # Cria objetos com os nomes das categorias das variáveis
+  rn <- rownames(tab)
+  cn <- colnames(tab)
+  
+  # Cria marginais vazios
+  row_total <- NULL
+  col_total <- NULL
+  
+  # Função para calcular as marginais
+  fun_margin <- function(x) {
+    mar1 <- apply(x, 1, sum)
+    mar2 <- apply(x, 2, sum)
+    list(row_total = mar1, col_total = mar2)
+  }
+  
+  # Cria a tabela com frequências absolutas
+  if (freq == "absoluta") {
+    marginals <- fun_margin(tab)
+    tab_abs <- cbind(tab, marginals$col_total)
+    tab_abs <- rbind(tab_abs, c(marginals$row_total, sum(marginals$row_total)))
+    colnames(tab_abs) <- c(cn, "Total")
+    rownames(tab_abs) <- c(rn, "Total")
+    return(tab_abs)
+    
+    # Cria a tabela com frequências relativas
+  } else if (freq == "relativa") {
+    tab_rel <- prop.table(tab, margin = margin)
+    marginals <- fun_margin(tab_rel)
+    
+    if (margin == 0) {
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+    } else if (margin == 1) {
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+    } else if (margin == 2) {
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+    }
+    
+    tab_rel <- round(tab_rel * 100, 1)
+    colnames(tab_rel) <- c(cn, "Total")
+    rownames(tab_rel) <- c(rn, "Total")
+    return(tab_rel)
+    
+    # Cria a tabela com frequências absolutas e relativas
+  } else if (freq == "ambas") {
+    marginals <- fun_margin(tab)
+    tab_abs <- cbind(tab, marginals$col_total)
+    tab_abs <- rbind(tab_abs, c(marginals$row_total, sum(marginals$row_total)))
+    
+    tab_rel <- prop.table(tab, margin = margin)
+    if (margin == 0) {
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+    } else if (margin == 1) {
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+    } else if (margin == 2) {
+      tab_rel <- rbind(tab_rel, c(marginals$row_total, sum(marginals$row_total)))
+      tab_rel <- cbind(tab_rel, marginals$col_total)
+    }
+    
+    tab_rel <- round(tab_rel * 100, 1)
+    
+    # Combinação de frequências absolutas e relativas
+    tab_both <- paste(tab_abs, "(", tab_rel, "%)")
+    colnames(tab_both) <- c(cn, "Total")
+    rownames(tab_both) <- c(rn, "Total")
+    
+    return(tab_both)
+  }
+}

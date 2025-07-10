@@ -1,0 +1,8 @@
+Aliased geom | Base geom | Changes in default
+area | ribbon | aes(min = 0, max = y), position = "stack"
+density | area | stat = "density"
+freqpoly | line | stat = "bin"
+histogram | bar | stat = "bin"
+jitter | point | position = "jitter"
+quantile | line | stat = "quantile"
+smooth | ribbon | stat = "smooth"

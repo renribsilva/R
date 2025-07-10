@@ -1,0 +1,10 @@
+
+?mpg2
+mpg3 <- within(mpg2, {
+  model <- reorder(model, cty)
+  manufacturer <- reorder(manufacturer, -cty)
+})
+models <- qplot(cty, model, data = mpg3)
+models
+models + facet_grid(manufacturer ~ ., scales = "free",
+                    space = "free") + opts(strip.text.y = theme_text())

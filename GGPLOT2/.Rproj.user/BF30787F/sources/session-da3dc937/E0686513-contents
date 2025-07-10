@@ -1,0 +1,11 @@
+# Requre o pacote readr e stringi
+library(readr)
+
+# Lê um arquivo txt
+file_stats <- read_delim("~/R/GGPLOT2/Stats.txt", delim="|")
+
+# Converte em data frame
+file_stats <- as.data.frame(file_stats)
+
+# Visualiza a tabela
+View(file_stats)

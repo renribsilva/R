@@ -1,0 +1,3 @@
+varp <- function(x){
+  var(x)*(length(x)-1)/length(x) # calcula a variância amostral e multiplica por (n-1)/n
+}

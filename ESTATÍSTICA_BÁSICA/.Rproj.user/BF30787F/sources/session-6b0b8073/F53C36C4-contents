@@ -1,0 +1,9 @@
+df_map <- read_map("~/TABWIN/MAPAS_2013/sp_mapas_2013/sp_micibge.MAP")
+levels(df_map$id)
+
+
+ggplot(df_map) +
+  geom_polygon(mapping = aes(x = x, y = y, fill = id)) +
+  theme(legend.position = "none")
+
+               

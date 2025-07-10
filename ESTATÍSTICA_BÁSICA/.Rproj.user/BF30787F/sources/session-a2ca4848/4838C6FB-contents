@@ -1,0 +1,89 @@
+# Função para distribuição conjunta
+
+dist_conj <- function(data, 
+                      varx = "variável distrubuída na horizontal", 
+                      vary = "variável distribuída na vertical", 
+                      freq = "abolsuta ou relativa",
+                      margin = "0, 1 ou 2") {
+  
+  nomes_colunas <- colnames(data)
+  v1 <- which(nomes_colunas == varx)
+  v2 <- which(nomes_colunas == vary)
+  
+  tab <- table(data[[varx]], data[[vary]])
+  rn <- dimnames(tab)[[1]]
+  cn <- dimnames(tab)[[2]]
+  
+  if (freq == "absoluta" &
+      any(colnames(tab2_1) == varx) &
+      any(colnames(tab2_1) == vary)) {
+    
+    # Adiciona linha e coluna com os totais
+    trow <- apply(tab, MARGIN = 2, FUN = sum)
+    tcol <- apply(tab, MARGIN = 1, FUN = sum)
+    tab_abs <- rbind(cbind(tab, tcol), c(trow, sum(tcol)))
+    
+    colnames(tab_abs) <- c(cn, "Total")
+    rownames(tab_abs) <- c(rn, "Total")
+    tab_abs
+    
+  } else if (freq == "relativa" &
+             any(colnames(tab2_1) == varx) &
+             any(colnames(tab2_1) == vary)) {
+    
+    if (margin == 0) {
+      
+      tabm0 <- tab %>% prop.table()*100
+      
+      trow <- apply(tabm0, MARGIN = 2, FUN = sum)
+      tcol <- apply(tabm0, MARGIN = 1, FUN = sum)
+      tab_rel_0 <- rbind(cbind(tabm0, tcol), c(trow, sum(tcol)))
+      
+      tab_rel_0 <- lapply(tab_rel_0, function(x) sprintf("%.1f%%", x)) %>%
+        matrix(ncol = dim(tab_rel_0)[2])
+      colnames(tab_rel_0) <- c(cn, "Total")
+      rownames(tab_rel_0) <- c(rn, "Total")
+      tab_rel_0
+      
+    } else if (margin == 1) {
+      
+      tabm1 <- tab %>% prop.table(margin = 1)*100
+      
+      tcol <- apply(tabm1, MARGIN = 1, FUN = sum)
+      trow <- table(data[[v2]]) %>% prop.table()*100
+      tab_rel_1 <- rbind(cbind(tabm1, tcol), c(trow, sum(trow)))
+      
+      tab_rel_1 <- lapply(tab_rel_1, function(x) sprintf("%.1f%%", x)) %>%
+        matrix(ncol = dim(tab_rel_1)[2])
+      colnames(tab_rel_1) <- c(cn, "Total")
+      rownames(tab_rel_1) <- c(rn, "Total")
+      tab_rel_1
+      
+    } else if (margin == 2) {
+      
+      tabm2 <- tab %>% prop.table(margin = 2)*100
+      
+      trow <- apply(tabm2, MARGIN = 2, FUN = sum)
+      tcol <- table(data[[v1]]) %>% prop.table()*100
+      tab_rel_2 <- rbind(cbind(tabm2, tcol), c(trow, sum(tcol)))
+      
+      tab_rel_2 <- lapply(tab_rel_2, function(x) sprintf("%.1f%%", x)) %>%
+        matrix(ncol = dim(tab_rel_2)[2])
+      colnames(tab_rel_2) <- c(cn, "Total")
+      rownames(tab_rel_2) <- c(rn, "Total")
+      tab_rel_2
+      
+    } else {
+      
+      msg <- c("margin não especificado")
+      msg
+      
+    }
+               
+  } else {
+    
+    msg2 <- c("freq ou var estão incorretos")
+    msg2
+    
+  }
+}

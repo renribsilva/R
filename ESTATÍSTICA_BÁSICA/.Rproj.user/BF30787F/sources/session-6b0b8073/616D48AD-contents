@@ -1,0 +1,2 @@
+binomial_table(0:10, n = 10)
+Poisson_table(0:3)

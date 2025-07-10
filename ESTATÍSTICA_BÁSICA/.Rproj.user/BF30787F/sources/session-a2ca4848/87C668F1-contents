@@ -1,0 +1,15 @@
+###############################################################################
+############################## Script Tabela 4.5 ##############################
+###############################################################################
+
+# Monta a base de dados
+tab4_5 <- as.table(matrix(c(85,55,35,25), ncol = 2))
+names(tab4_5)
+# Monta a tabela de distribuição conjunta de alunos segundo o sexo (X) 
+# e o curso escolhido (Y).
+tab4_5 <- dist_conj(tab4_5, 
+                     varx = "A",
+                     vary = "Grau_de_Instrução",
+                     freq = "absoluta")
+
+print(tab4_5)

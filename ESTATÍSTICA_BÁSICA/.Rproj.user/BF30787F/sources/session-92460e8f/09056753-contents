@@ -1,0 +1,29 @@
+preencher_matriz <- function(matriz) {
+  # Obtém o número de linhas e colunas da matriz
+  num_linhas <- nrow(matriz)
+  num_colunas <- ncol(matriz)
+  
+  # Preenche a matriz com o produto das porcentagens na linha pelos valores absolutos na coluna
+  for (i in 1:num_linhas) {
+    for (j in 1:num_colunas) {
+      matriz[i, j] <- matriz[i, j] * (matriz[num_linhas, j] / 100)
+    }
+  }
+  
+  return(matriz)
+}
+
+# Criando a matriz vazia 3x3
+matriz <- matrix(0, nrow = 3, ncol = 3)
+
+# Definindo as porcentagens na última linha
+matriz[3,] <- c(25, 50, 25)
+
+# Definindo os valores absolutos na última coluna
+matriz[,3] <- c(100, 50, 25)
+
+# Preenchendo a matriz conforme especificado
+matriz_preenchida <- preencher_matriz(matriz)
+
+# Exibindo a matriz preenchida
+print(matriz_preenchida)

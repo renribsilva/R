@@ -1,0 +1,8 @@
+library(nlme)
+library(ggplot2)
+model <- lme(height ~ age, data = Oxboys, random = ~ 1 + age | Subject)
+model
+oplot <- ggplot(Oxboys, aes(age, height, group = Subject)) +
+  geom_line()
+oplot
+  

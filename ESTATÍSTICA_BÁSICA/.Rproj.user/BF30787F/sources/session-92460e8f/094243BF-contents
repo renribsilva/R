@@ -1,0 +1,28 @@
+###############################################################################
+############################## Script Tabela 4.7 ##############################
+###############################################################################
+
+# Executa a função dist_conj
+source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/dist_conj.R")
+
+# Monta a base de dados
+df4_7 <- data.frame(rbind(
+  matrix(rep(c("Masculino","Física"), times = 100), ncol = 2, byrow = T),
+  matrix(rep(c("Feminino","Física"), times = 20), ncol = 2, byrow = T),
+  matrix(rep(c("Masculino","Ciências Sociais"), times = 40), ncol = 2, byrow = T),
+  matrix(rep(c("Feminino","Ciências Sociais"), times = 40), ncol = 2, byrow = T)))
+
+# Dá nome às colunas
+colnames(df4_7) <-c ("sexo","curso")
+
+# Monta a tabela de distribuição conjunta das frequências e proporções
+# (em porcentagem), segundo o sexo (X) e o curso escolhido, margin == 2
+tab4_7 <- dist_conj(df4_7,
+                    vary = "curso",
+                    varx = "sexo",
+                    freq = "relativa",
+                    margin = 1,
+                    expected = TRUE)
+
+# Imprime o dataframe
+print(tab4_7)

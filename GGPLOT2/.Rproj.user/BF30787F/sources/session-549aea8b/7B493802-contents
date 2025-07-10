@@ -1,0 +1,33 @@
+v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 v11 v12
+abline abline colour linetype size
+area identity colour fill linetype size x* y*
+bar bin colour fill linetype size weight x*
+bin2d bin2d colour fill linetype size weight xmax* xmin* ymax* ymin*
+blank identity
+boxplot boxplot colour fill lower* middle* size upper* weight x* ymax* ymin*
+contour contour colour linetype size weight x* y*
+crossbar identity colour fill linetype size x* y* ymax* ymin*
+density density colour fill linetype size weight x* y*
+density2d density2d colour linetype size weight x* y*
+errorbar identity colour linetype size width x* ymax* ymin*
+freqpoly bin colour linetype size
+hex binhex colour fill size x* y*
+histogram bin colour fill linetype size weight x*
+hline hline colour linetype size
+jitter identity colour fill shape size x* y*
+line identity colour linetype size x* y*
+linerange identity colour linetype size x* ymax* ymin*
+path identity colour linetype size x* y*
+point identity colour fill shape size x* y*
+pointrange identity colour fill linetype shape size x* y* ymax* ymin*
+polygon identity colour fill linetype size x* y*
+quantile quantile colour linetype size weight x* y*
+rect identity colour fill linetype size xmax* xmin* ymax* ymin*
+ribbon identity colour fill linetype size x* ymax* ymin*
+rug identity colour linetype size
+segment identity colour linetype size x* xend* y* yend*
+smooth smooth alpha colour fill linetype size weight x* y*
+step identity colour linetype size x* y*
+text identity angle colour hjust label* size vjust x* y*
+tile identity colour fill linetype size x* y*
+vline vline colour linetype size
