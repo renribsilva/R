@@ -2,8 +2,11 @@
 ############################## Script Tabela 2.4 ##############################
 ###############################################################################
 
+# Carrega os pacotes
+library("dplyr")
+
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA/PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria uma tabela com Classes de Salário
 tab2_4 <- tab2_1$x_Sal_Min %>%

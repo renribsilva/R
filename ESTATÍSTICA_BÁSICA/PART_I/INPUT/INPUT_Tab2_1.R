@@ -2,11 +2,16 @@
 ############################## Script Tabela 2.1 ##############################
 ###############################################################################
 
+# Carrega os pacotes
+library("readxl")
+library("magrittr")
+library("forcats")
+
 # Imprime nomes das planilhas do dataset
-excel_sheets("~/R/ESTATÍSTICA_BÁSICA/PART_I/DADOS/Dados_EB.xls")
+excel_sheets("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA/PART_I/DADOS/Dados_EB.xls")
 
 # Importa a planilha "tabela 2.1.xls"
-tab2_1 <- read_xls("~/R/ESTATÍSTICA_BÁSICA/PART_I/DADOS/Dados_EB.xls", 
+tab2_1 <- read_xls("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA/PART_I/DADOS/Dados_EB.xls", 
                    sheet = 1,
                    skip = 1)
 
