@@ -3,10 +3,11 @@
 ###############################################################################
 
 # Carrega os pacotes
+library("dplyr")
 library("ggplot2")
 
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA/PART_I/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria uma tabela com as coordenadas dos rótulos, bem como os próprios rótulos
 coord2_2 <- tab2_1$Grau_de_Instrução %>% 

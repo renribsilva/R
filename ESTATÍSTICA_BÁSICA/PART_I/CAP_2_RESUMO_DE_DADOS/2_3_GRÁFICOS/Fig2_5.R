@@ -2,14 +2,19 @@
 ############################## Script Figura 2.5 ##############################
 ###############################################################################
 
+# Carrega os pacotes
+library(tibble)
+library(cowplot)
+library(ggplot2)
+
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria o gráfico a 
 fig2_5_a <- ggplot(tab2_1, aes(x = N_de_Filhos)) + 
   geom_dotplot(stackratio = 0,
                dotsize = 1) +
-  geom_text(mapping = aes(label = ..count..), 
+  geom_text(mapping = aes(label = after_stat(count)), 
             stat = "count", 
             y = 1.1) +
   theme(panel.background = element_blank(),
@@ -47,12 +52,12 @@ fig2_5_c <- ggplot(df2_5, aes(x = `.`, y = `n`)) +
        y = "Frequência absoluta")
 
 # Plota os gráficos
-plot.new()
-plot_grid(fig2_5_a, fig2_5_b, fig2_5_c,
-          labels = "auto",
-          align = "h",
-          nrow = 1,
-          ncol = 3,
-          scale = 0.9,
-          label_x = 0.5)
-          
+print(
+  plot_grid(fig2_5_a, fig2_5_b, fig2_5_c,
+            labels = "auto",
+            align = "h",
+            nrow = 1,
+            ncol = 3,
+            scale = 0.9,
+            label_x = 0.5)
+)
