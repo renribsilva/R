@@ -6,7 +6,7 @@
 # no livro sem acesso aos dados desagrupados
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CM1.R")
+source("PART_I/INPUT/INPUT_Tab_CM1.R")
 
 # Cria um histograma com duas bases de dados
 fig2_19 <- ggplot(df_CM1, aes(x = N_de_Empregados, y = Dens_fi)) +

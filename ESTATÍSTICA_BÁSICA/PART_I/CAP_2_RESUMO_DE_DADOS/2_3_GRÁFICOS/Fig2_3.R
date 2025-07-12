@@ -2,10 +2,6 @@
 ############################## Script Figura 2.3 ##############################
 ###############################################################################
 
-# Carrega os pacotes
-library("dplyr")
-library("ggplot2")
-
 # Executa "Script Tabela 2.1" que contém a base de dados
 source("PART_I/INPUT/INPUT_Tab2_1.R")
 

@@ -10,4 +10,4 @@ dureza<-c(53.0,70.2,84.3,69.5,77.8,87.5,53.4,82.5,67.3,54.1,
 # Plota o ramo-e-folhas
 plot.new()
 fig2_9 <- capture.output(stem(as.integer(dureza),scale = 1))
-text(0,1, paste(stem2_9, collapse='\n'), adj=c(0,1), family='mono')
+text(0,1, paste(fig2_9, collapse='\n'), adj=c(0,1), family='mono')

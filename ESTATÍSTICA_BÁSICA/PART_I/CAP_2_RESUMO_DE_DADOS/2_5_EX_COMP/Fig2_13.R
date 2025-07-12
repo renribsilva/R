@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Notas.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Notas.R")
 
 # Cria um data frame para gerar o gráfico
 df2_12 <- cut(tab_CD_notas$Notas, 

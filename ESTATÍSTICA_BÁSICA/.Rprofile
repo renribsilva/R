@@ -5,8 +5,20 @@ setwd("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA")
 message("✔️ O projeto '", basename(getwd()),"' foi carregado com sucesso. O diretório de trabalho é: ", getwd())
 
 # Carregamento automático de pacotes (opcional)
-# if (!require(ggplot2)) install.packages("ggplot2")
-# library(ggplot2)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(magrittr)
+library(forcats)
+library(tibble)
+library(cowplot)
+
+# Lista os pacotes carregados explicitamente com library() (sem criar objetos)
+message("✔️ Pacotes carregados: ", 
+        paste(setdiff(gsub("^package:", "", grep("^package:", search(), value = TRUE)),
+                      c("stats", "graphics", "grDevices", "utils", "datasets", "methods", "base")),
+              collapse = ", "))
+
 
 # Opções globais (exemplo: nunca mostrar notação científica)
 # options(scipen = 999)

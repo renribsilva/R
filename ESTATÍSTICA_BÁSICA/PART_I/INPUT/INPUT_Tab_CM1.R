@@ -6,7 +6,7 @@
 rm(list=ls())
 
 # Cria um data frame em que cada empregado é uma observação
-tab_CM1 <- read.delim2("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/DADOS/CM1.txt", sep = " ") %>%
+tab_CM1 <- read.delim2("PART_I/DADOS/CM1.txt", sep = " ") %>%
   as_tibble() %>%
   as.data.frame() %>%
   mutate(Prop = paste(Prop*100,"%", sep = ""))

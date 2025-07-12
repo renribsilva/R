@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria uma tabela com as informações que serão plotadas no gráfico
 df2_8 <- tab2_1$N_de_Filhos %>%

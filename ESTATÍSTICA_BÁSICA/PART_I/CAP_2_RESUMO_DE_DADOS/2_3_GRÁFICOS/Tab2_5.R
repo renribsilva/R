@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa "Script Tabela 2.1" que contém a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria a tabela 2.5
 tab2_5 <- tab2_1$Grau_de_Instrução %>%

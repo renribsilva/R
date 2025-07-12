@@ -2,9 +2,6 @@
 ############################## Script Figura 2.2 ##############################
 ###############################################################################
 
-# Carrega os pacotes
-library("ggplot2")
-
 # Executa "Script Tabela 2.1" que contém a base de dados
 source("PART_I/INPUT/INPUT_Tab2_1.R")
 
@@ -17,7 +14,8 @@ fig2_2 <- ggplot(
   scale_x_discrete(expand = expansion(mult = c(0.4, 0.4))) +
   lims(y = c(0, max(table(tab2_1$Grau_de_Instrução))+1)) +
   labs(y = "Frequência absoluta",
-       title = "Gráfico em barras para a variável Y: grau de instrução.") +
+       x= "Grau de Instrução",
+       title = "Gráfico em barras para a variável: grau de instrução.") +
   theme(panel.background = element_blank(),
         axis.line.x = element_line(colour = "grey50"),
         axis.line.y = element_line(colour = "grey50"))

@@ -2,11 +2,6 @@
 ############################## Script Figura 2.5 ##############################
 ###############################################################################
 
-# Carrega os pacotes
-library(tibble)
-library(cowplot)
-library(ggplot2)
-
 # Executa "Script Tabela 2.1" que contém a base de dados
 source("PART_I/INPUT/INPUT_Tab2_1.R")
 
