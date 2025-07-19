@@ -3,12 +3,12 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Calcula a média desconsiderando valores não encontrados
-mean(tab2_1$N_de_Filhos, na.rm = TRUE)
+print(mean(tab2_1$N_de_Filhos, na.rm = TRUE))
 
 # Calcula a média aparada em 10%
-mean(tab2_1$N_de_Filhos, na.rm = TRUE, trim = 0.1)
+print(mean(tab2_1$N_de_Filhos, na.rm = TRUE, trim = 0.1))
 
 

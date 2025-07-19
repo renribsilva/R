@@ -3,7 +3,9 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
+
+n <- length(purrr::discard(tab2_1$N_de_Filhos, is.na))
 
 # Gera a média da variável N_de_Filhos
 m3_3 <- mean(tab2_1$N_de_Filhos, na.rm = T)
@@ -21,7 +23,7 @@ dm3_3 <-  sum(abs(c3_3))/length(purrr::discard(tab2_1$N_de_Filhos, is.na))
 print(dm3_3)
 
 # Gera a variância de AMOSTRA da variável N_de_Filhos
-var3_3a <- sum(c3_3^2/(length(purrr::discard(tab2_1$N_de_Filhos, is.na))-1))
+var3_3a <- sum(c3_3^2/(n-1))
 print(var3_3a)
 
 # Gera a variância considerando a AMOSTRA como sendo a população total de dados
@@ -34,6 +36,6 @@ print(sd3_3a)
 
 # Gera o desvio-padrão considerando a AMOSTRA como sendo a população total de dados
 sd3_3b <- sd(tab2_1$N_de_Filhos, na.rm=T)*(n-1)/n
-print(sd3_3)
+print(sd3_3b)
 
   

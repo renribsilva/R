@@ -24,4 +24,4 @@ median(c3_5b)
 mean(c3_5b)
 
 # Calcula os quantis empíricos de c3_5b 
-quantile(c3_5b, probs = c(.25,.50,.75), type = 6) 
+print(quantile(c3_5b, probs = c(.25,.50,.75), type = 6))

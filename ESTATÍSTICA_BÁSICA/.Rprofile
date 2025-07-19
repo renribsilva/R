@@ -12,6 +12,7 @@ library(magrittr)
 library(forcats)
 library(tibble)
 library(cowplot)
+library(aplpack)
 
 # Lista os pacotes carregados explicitamente com library() (sem criar objetos)
 message("✔️ Pacotes carregados: ", 

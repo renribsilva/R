@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Determina uma semente para conjuntos de dados repetíveis
 set.seed(1)
@@ -20,7 +20,7 @@ fig3_1 <- ggplot(df3_1, aes(x = x)) +
                 xlim=c(quantile(df3_1$x)[2], quantile(df3_1$x)[4])) +
   stat_function(fun = dnorm) +
   guides(fill = guide_legend(title = "Obervações")) +
-  scale_fill_discrete(type = c(col2hcl("skyblue"))) +
+  scale_fill_discrete(type = c("skyblue")) +
   scale_x_continuous(breaks = c(quantile(df3_1$x)),
                      labels = c("x(1)", "q1", "q2", "q3", "x(n)"),
                      expand = expansion(mult = c(0.1, 0.1))) +

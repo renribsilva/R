@@ -3,4 +3,4 @@
 ###############################################################################
 
 # Executa o script da Figura 3.7
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_3_MEDIDAS_DE_POSIÇÃO/Fig3_7.R")
+source("PART_I/CAP_3_MEDIDAS_DE_POSIÇÃO/3_4_BOX_PLOTS/Fig3_7.R")

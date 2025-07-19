@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Cria o boxplot para a varíavel População
 fig3_7 <- ggplot(tab_CD_municípios) +

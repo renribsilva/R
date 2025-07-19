@@ -2,4 +2,4 @@
 ############################## Script Quadroo 3.2 #############################
 ###############################################################################
 
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_3_MEDIDAS_DE_POSIÇÃO/3_3_QUAN_EMP/Qua3_1.R")
+source("PART_I/CAP_3_MEDIDAS_DE_POSIÇÃO/3_3_QUAN_EMP/Qua3_1.R")

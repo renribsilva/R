@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Gera a média de uma variável contínua
 m3_4 <- mean(tab2_1$x_Sal_Min)

@@ -3,15 +3,15 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Cria a figura
 fig3_5 <- ggplot(data.frame(x = c(0:100), y = c(0:100)), aes(x = x, y = y)) +
   geom_rect(mapping = aes(xmin = 25, xmax = 75, ymin = 75, ymax = 75),
             fill = NA,
             colour = "black") +
-  geom_segment(mapping = aes(x = 25, y = 37.5, xend = 25, yend = 75)) +
-  geom_segment(mapping = aes(x = 75, y = 37.5, xend = 75, yend = 75))+
+  annotate("segment", x = 25, y = 37.5, xend = 25, yend = 75) +
+  annotate("segment", x = 75, y = 37.5, xend = 75, yend = 75) +
   geom_text(data = data.frame(x = c(50), y = c(80), l = c("n")),
             mapping = aes(x = x, y = y, label = l)) +
   geom_text(data = data.frame(x = c(50, 20), 

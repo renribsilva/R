@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Executa a base de dados do Exemplo 3.5
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_3_MEDIDAS_DE_POSIÇÃO/Ex3_5.R")
+source("PART_I/CAP_3_MEDIDAS_DE_POSIÇÃO/3_3_QUAN_EMP/Ex3_5.R")
 
 # Calcula as posições do polígono
 pos_pq <- data.frame("id" = c(1, 1, 1, 1, 2, 2, 2, 2),
@@ -40,7 +40,7 @@ Ex3_6 <- ggplot(tab2_1, aes(x = x_Sal_Min)) +
         axis.line.x.top = element_line(colour = "black"),
         axis.line.x.bottom = element_line(colour = "black")) +
   guides(fill = guide_legend(title = "Quantis empíricos")) +
-  scale_fill_discrete(type = c(col2hcl("skyblue")))
+  scale_fill_discrete(type = c("skyblue"))
 
 # Plota o gráfico
 plot(Ex3_6)

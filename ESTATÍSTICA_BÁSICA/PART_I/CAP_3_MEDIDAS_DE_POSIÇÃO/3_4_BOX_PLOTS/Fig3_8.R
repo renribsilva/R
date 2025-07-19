@@ -20,7 +20,7 @@ fig3_8 <- ggplot(df3_1, aes(x = x)) +
                 alpha = 0.5,
                 xlim=c(LI, LS)) +
   guides(fill = guide_legend(title = "Obervações")) +
-  scale_fill_discrete(type = c(col2hcl("skyblue"))) +
+  scale_fill_discrete(type = c("skyblue")) +
   scale_x_continuous(breaks = c(quantile(df3_1$x)),
                      labels = c("x(1)", "q1", "0", "q3", "x(n)"),
                      expand = expansion(mult = c(0.1, 0.1))) +

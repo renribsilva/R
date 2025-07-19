@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Executa o script da função summary2
-source("~/R/MY_FUNCTION/ESTATÍSTICA_BÁSICA/summary2.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/UNI/summary2.R")
 
 # Medidas resumo para a base de dados dos municípios (n=30)
 qua3_1a <- summary(tab_CD_municípios$População)

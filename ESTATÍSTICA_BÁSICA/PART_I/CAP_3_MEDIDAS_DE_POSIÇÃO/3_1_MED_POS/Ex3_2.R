@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Executa o script da tabela 2.6
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_2_RESUMO_DE_DADOS/2_3_GRÁFICOS/Fig2_6.R")
+source("PART_I/CAP_2_RESUMO_DE_DADOS/2_3_GRÁFICOS/Fig2_6.R")
 
 # Calcula a média da variável
 m3_2 <-  round(mean(round(tab2_1$x_Sal_Min, digits = 0)), digits = 2)
