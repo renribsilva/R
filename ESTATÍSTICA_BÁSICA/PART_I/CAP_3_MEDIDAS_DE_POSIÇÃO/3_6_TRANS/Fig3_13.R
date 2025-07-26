@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Cria o boxplot para a varíavel População
-ggplot(tab_CD_municípios) +
+fig3_12 <- ggplot(tab_CD_municípios) +
   geom_boxplot(mapping = aes(x = 1, y = log(População)),) +
   geom_boxplot(mapping = aes(x = 2, y = População^(1/4))) +
   geom_boxplot(mapping = aes(x = 3, y = População^(1/2))) +
@@ -22,4 +22,6 @@ ggplot(tab_CD_municípios) +
   theme(panel.background = element_blank(),
         axis.line.y = element_line(colour = "black"),
         axis.line.x = element_line(colour = "black"))
+
+print(fig3_12)
   

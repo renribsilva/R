@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a função dist_conj
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/BI/dist_conj.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/BI/tabela_contingência.R")
 
 # Monta a base de dados
 df4_7 <- data.frame(rbind(
@@ -17,7 +17,7 @@ colnames(df4_7) <-c ("sexo","curso")
 
 # Monta a tabela de distribuição conjunta das frequências e proporções
 # (em porcentagem), segundo o sexo (X) e o curso escolhido, margin == 2
-tab4_7 <- dist_conj(df4_7,
+tab4_7 <- tabela_contingência(df4_7,
                     vary = "curso",
                     varx = "sexo",
                     dist = "abs_rel",

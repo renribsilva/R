@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Poluição.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Poluição.R")
 
 # Cria o gráfico
 fig3_16 <- ggplot(tab_CD_poluição) +

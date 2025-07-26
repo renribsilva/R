@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/CAP_3_MEDIDAS_DE_POSIÇÃO/3_5_GRA_SIMET/Ex3_9.R")
+source("PART_I/CAP_3_MEDIDAS_DE_POSIÇÃO/3_5_GRA_SIMET/Ex3_9.R")
 
 # Cria um dataframe
 df3_10 <- data.frame(x = c3_9, y = rep(5, times = length(c3_9)))
@@ -13,7 +13,7 @@ fig3_10 <- ggplot(df3_10, aes(x = x, y = y)) +
   geom_rect(mapping = aes(xmin = -2, xmax = 18, ymin = 4.5, ymax = 5.4),
             fill = NA,
             colour = "black") +
-  geom_segment(mapping = aes(x = -1, y = 5, xend = 17, yend = 5)) +
+  annotate("segment", x = -1, y = 5, xend = 17, yend = 5) +
   geom_text(data = data.frame(x = c(0,5,10,15), 
                               y = c(5.15,5.15,5.15,5.15)),
              mapping = aes(x = x, y = y, label = x)) +

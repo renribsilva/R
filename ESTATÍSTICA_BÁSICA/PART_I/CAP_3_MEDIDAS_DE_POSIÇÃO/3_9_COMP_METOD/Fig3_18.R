@@ -1,5 +1,5 @@
 ###############################################################################
-################################ Script Figura 3.18 ############################
+################################ Script Figura 3.18 ###########################
 ###############################################################################
 
 # Cria um vetor com os dados
@@ -14,10 +14,15 @@ scdf <- function(vetor){
     f[i] <- sum(t[1:i])/st - (t[i]/st)/2
   }
   f <- f %>% as.data.frame()
-  f$x <- f$x %>% as.character() %>% as.numeric()
+  colnames(f) <- c("x", "Freq")  # Renomeia colunas corretamente
+  f$x <- as.numeric(as.character(f$x))  # Converte os valores de x para numérico
   return(f)
 }
-?geom_smooth
+
+# Gera o dataframe com a função
+df <- scdf(x)
+names(df)[2] <- "Freq"  # Renomeia a coluna da frequência
+
 # Cria o gráfico
 fig3_18 <- ggplot(data = data.frame(x = x)) +
   stat_ecdf(mapping = aes(x = x)) +
@@ -37,3 +42,4 @@ fig3_18 <- ggplot(data = data.frame(x = x)) +
 
 # Plota o gráfico
 plot(fig3_18)
+

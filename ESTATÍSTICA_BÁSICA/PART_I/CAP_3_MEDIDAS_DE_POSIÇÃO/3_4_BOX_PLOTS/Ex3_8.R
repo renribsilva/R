@@ -11,4 +11,4 @@ c3_7 <- tab_CD_municípios$População %>%
   sort(decreasing = TRUE)
 
 # Medidas resumo para a base de dados dos 15 municípios mais populosos (n=15)
-summary(c3_7[1:15])
+print(summary(c3_7[1:15]))

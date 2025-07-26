@@ -2,7 +2,7 @@
 ################################ Script Fig 3.11 ##############################
 ###############################################################################
 
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Cria o histograma e transforma a variável com o logarítmo natural ou neperiano
 fig3_12a <- ggplot(data = tab_CD_municípios) +
@@ -63,4 +63,4 @@ fig3_12d <- ggplot(data = tab_CD_municípios) +
         axis.line.y = element_line(colour = "black"))
 
 # Plota os histogrmas
-plot_grid(fig3_12a, fig3_12b, fig3_12c, fig3_12d)
+print(plot_grid(fig3_12a, fig3_12b, fig3_12c, fig3_12d))

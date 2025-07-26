@@ -3,13 +3,13 @@
 ###############################################################################
 
 # Executa a base de dados da Tabela 2.1
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Municípios.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Municípios.R")
 
 # Executa o script da função sim_uv
-source("~/R/MY_FUNCTION/ESTATÍSTICA_BÁSICA/sim_uv.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/UNI/simetria_uv.R")
 
 # Aplica a função e guarda em dfuv3_11
-dfuv3_11 <- sim_uv(tab_CD_municípios, col = "População")
+dfuv3_11 <- simetria_uv(tab_CD_municípios, col = "População")
 
 # Cria o gráfico de simetria
 fig3_11 <- ggplot(dfuv3_11, aes(x = ui, y = vi)) +

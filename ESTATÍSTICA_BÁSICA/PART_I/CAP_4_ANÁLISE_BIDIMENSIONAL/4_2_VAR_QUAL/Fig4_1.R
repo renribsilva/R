@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/CAP_4_ANÁLISE_BIDIMENSIONAL/Tab4_2.R")
+source("PART_I/CAP_4_ANÁLISE_BIDIMENSIONAL/Tab4_2.R")
 
 # Monta um dataframe para plotagem
 df4_5 <- melt(tab4_2[1:3,], 

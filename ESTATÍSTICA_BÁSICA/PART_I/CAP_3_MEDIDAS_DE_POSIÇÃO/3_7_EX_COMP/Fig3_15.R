@@ -3,13 +3,13 @@
 ###############################################################################
 
 # Executa a base de dados
-source("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/INPUT/INPUT_Tab_CD_Notas.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Notas.R")
 
 # Executa o script da função sim_uv
-source("~/R/MY_FUNCTION/ESTATÍSTICA_BÁSICA/sim_uv.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/UNI/simetria_uv.R")
 
 # Aplica a função e guarda em dfuv3_11
-dfuv3_15 <- sim_uv(tab_CD_notas, col = "Notas")
+dfuv3_15 <- simetria_uv(tab_CD_notas, col = "Notas")
 
 # Cria o gráfico de simetria
 fig3_15 <- ggplot(dfuv3_15, aes(x = ui, y = vi)) +
@@ -20,8 +20,8 @@ fig3_15 <- ggplot(dfuv3_15, aes(x = ui, y = vi)) +
        y = "vi",
        title = "Gráfico de simetria para o CD-Municípios.") +
   scale_y_continuous(breaks = seq(0,4, by = 1),
-                     expand = expansion(mult = c(0.14,0.1))) +
-  scale_x_continuous(expand = expansion(mult = c(0.15,0.2))) +
+                     expand = expansion(mult = c(0,0.05))) +
+  scale_x_continuous(expand = expansion(mult = c(0,0.05))) +
   theme(panel.background = element_blank(),
         axis.line.x = element_line(colour = "black"),
         axis.line.y = element_line(colour = "black"))
