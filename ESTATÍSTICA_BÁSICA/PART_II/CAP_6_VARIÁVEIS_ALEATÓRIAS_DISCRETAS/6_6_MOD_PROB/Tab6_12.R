@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa o script da função binomial_table
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/STANDARD_TABLES/binomial_table.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/STANDARD_TABLES/binomial_table.R")
 
 # Cria a base de dados
 x <- c(0,1,2,3)

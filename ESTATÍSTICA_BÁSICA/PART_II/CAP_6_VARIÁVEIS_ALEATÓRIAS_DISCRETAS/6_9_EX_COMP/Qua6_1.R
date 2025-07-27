@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa o script binomial_table
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/STANDARD_TABLES/binomial_table.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/STANDARD_TABLES/binomial_table.R")
 
 # Distribuição binomial para k=0:12, quando n = 14 e p = 0.3
 px <- dbinom(0:12, size=14, p=0.3)

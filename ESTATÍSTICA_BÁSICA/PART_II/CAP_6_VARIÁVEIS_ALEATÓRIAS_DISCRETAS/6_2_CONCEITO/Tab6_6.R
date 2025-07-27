@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./PART_II/CAP_6_VARIÁVEIS_ALEATÓRIAS_DISCRETAS/6_2_CONCEITO/Tab6_5.R")
+source("PART_II/CAP_6_VARIÁVEIS_ALEATÓRIAS_DISCRETAS/6_2_CONCEITO/Tab6_5.R")
 
 # Executa a função var_aleatória
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_II/var_aleatória.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_II/var_aleatória.R")
 
 # Cria a tabela
 tab6_6 <- var_aleatória(df6_5, var = "X")

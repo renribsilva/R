@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa o script p_quantil
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_II/quantil_teórico.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_II/quantil_teórico.R")
 
 # Cria a base de dados
 df6_14 <- data.frame(x = c(1,0,1,-1))
