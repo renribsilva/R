@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/CAP_4_ANÁLISE_BIDIMENSIONAL/4_7_GRÁF_QQ/Tab4_18.R")
+source("PART_I/CAP_4_ANÁLISE_BIDIMENSIONAL/4_7_GRÁF_QQ/Tab4_18.R")
 
 # Cria o gráfico
 fig4_10 <- ggplot(df4_18, aes(x = prova1, y = prova2)) +

@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/CAP_4_ANÁLISE_BIDIMENSIONAL/4_5_ASSOC_VAR_QUAN/Tab4_14.R")
+source("PART_I/CAP_4_ANÁLISE_BIDIMENSIONAL/4_5_ASSOC_VAR_QUAN/Tab4_14.R")
 
 # Cria o gráfico de dispersão
 fig4_5 <- ggplot(df4_14, aes(x = X, y = Y)) +

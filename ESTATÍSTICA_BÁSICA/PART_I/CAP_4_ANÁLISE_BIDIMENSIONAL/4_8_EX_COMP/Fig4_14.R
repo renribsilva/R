@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab_CD_Veículos.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Veículos.R")
 
 # Cria o gráfico
 fig4_14 <- ggplot(tab_CD_veículos, aes(x = Comprimento, y = Preço)) + 
@@ -14,7 +14,7 @@ fig4_14 <- ggplot(tab_CD_veículos, aes(x = Comprimento, y = Preço)) +
                      name = "Procedência",  
                      labels = c("Importado", "Nacional"), 
                      guide = guide_legend(override.aes = list(colour = c("skyblue", "orange")))) +
-  guides(colour = FALSE) +
+  guides(colour = "none") +
   labs(title = "Gráfico de dispersão simbólico das variáveis preço e comprimento de veículos, categorizadas pela variável procedência") +
   theme(panel.background = element_blank(),
         panel.border = element_rect(colour = "black", fill = NA),

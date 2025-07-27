@@ -13,6 +13,8 @@ library(forcats)
 library(tibble)
 library(cowplot)
 library(aplpack)
+library(knitr)
+library(zoo)
 
 # Lista os pacotes carregados explicitamente com library() (sem criar objetos)
 message("✔️ Pacotes carregados: ", 

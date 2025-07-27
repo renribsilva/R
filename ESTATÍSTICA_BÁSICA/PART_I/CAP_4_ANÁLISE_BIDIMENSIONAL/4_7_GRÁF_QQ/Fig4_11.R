@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab_CD_Temperaturas.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Temperaturas.R")
 
 # Cria o gráfico
 fig4_11 <- ggplot(tab_CD_temperaturas, aes(x = Cananéia, y = Ubatuba)) +

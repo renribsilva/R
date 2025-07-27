@@ -3,10 +3,10 @@
 ###############################################################################
 
 # Imprime nomes das planilhas do dataset
-excel_sheets("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/DADOS/Dados_EB.xls")
+excel_sheets("PART_I/DADOS/Dados_EB.xls")
 
 # Importa a planilha "CD-notas.xls"
-tab_CD_veículos <- read_xls("~/R/ESTATÍSTICA_BÁSICA/AN_EX_DADOS/DADOS/Dados_EB.xls",
+tab_CD_veículos <- read_xls("PART_I/DADOS/Dados_EB.xls",
                 sheet = 8,
                 skip = 4,
                 col_names = TRUE)

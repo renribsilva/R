@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria o gráfico
 fig4_8 <- ggplot(tab2_1, aes(y = x_Sal_Min)) +

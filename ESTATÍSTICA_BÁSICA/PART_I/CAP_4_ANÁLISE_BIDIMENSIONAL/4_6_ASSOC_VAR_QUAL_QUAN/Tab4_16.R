@@ -3,13 +3,13 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Executa o script da função varp
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/UNI/varp.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/UNI/varp.R")
 
 # Executa o script da função summary_bi
-source("~/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/BI/summary_bi.R")
+source("~/Área\ de\ trabalho/DEV/R/MY_FUNCTIONS/ESTATÍSTICA_BÁSICA/PART_I/BI/summary_bi.R")
 
 # Calcula as medidas-resumo para a variável Salário, segundo o grau de 
 # instrução

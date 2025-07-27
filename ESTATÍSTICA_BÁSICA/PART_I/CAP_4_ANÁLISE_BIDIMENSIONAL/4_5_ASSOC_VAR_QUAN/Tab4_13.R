@@ -8,7 +8,7 @@ rn4_13 <- c(LETTERS[1:10])
 # Cria a base de dados
 df4_13 <- data.frame(X = c(12,16,18,20,28,30,40,48,50,54), 
                      Y = c(7.2,7.4,7,6.5,6.6,6.7,6,5.6,6,5.5),
-                     row.names = rn4_12)
+                     row.names = rn4_13)
 
 # Imprime a base de dados
 print(df4_13)

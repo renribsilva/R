@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab_CD_Mercado.R")
+source("PART_I/INPUT/INPUT_Tab_CD_Mercado.R")
 
 # Calcula a reta de mínimos quadrados
 modelo <- lm(tab_CD_mercado$Ibovespa[1:39] ~ tab_CD_mercado$Telebrás[1:39])

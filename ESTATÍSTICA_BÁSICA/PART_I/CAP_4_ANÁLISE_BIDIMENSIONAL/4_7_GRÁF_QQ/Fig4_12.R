@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Executa a base de dados
-source("./AN_EX_DADOS/INPUT/INPUT_Tab2_1.R")
+source("PART_I/INPUT/INPUT_Tab2_1.R")
 
 # Cria os gráficos
 fig4_12 <- ggplot(tab2_1) +
