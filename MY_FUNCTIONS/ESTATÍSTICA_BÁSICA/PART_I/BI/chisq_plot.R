@@ -118,7 +118,7 @@ chisq_plot <- function(data,
                   geom = "area",
                   alpha = 0.5,
                   xlim = c(xs, xn)) +
-    scale_fill_discrete(type = c(col2hcl("skyblue"))) +
+    scale_fill_discrete(type = c("skyblue")) +
     guides(fill = guide_legend(title = paste0("α = ", alpha))) +
     labs(title = ggtitle,
          x = "Qui-quadrado",
