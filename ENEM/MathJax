@@ -1,4 +1,0 @@
-P(x_j=1|\theta,a_i,b_i,c_i)=c_i+\frac{(1-c_i)}{1+exp[a_i(\theta-b_i]}=P_{j1}(\theta)
-P(x_j=0|\theta,a_i,b_i,c_i)=1-P(x_j=1|\theta,a_i,b_i,c_i)
-\theta \approx \frac{\sum_{q=1}X_qP(x_j/X_q,ξ)A(X_q)}{\sum_{q=1}P(x_j/X_q,ξ)A(X_q)}
-PSD(\theta) \approx \frac{\sum_{q=1}(X_q-\theta)^2 P(x_j/X_q,ξ)A(X_q)}{\sum_{q=1}P(x_j/X_q,ξ)A(X_q)}

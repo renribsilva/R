@@ -1,8 +1,3 @@
-# Lista todos os pacotes não nativos
-user_pkgs <- installed.packages()[, "Package"]
-user_pkgs <- user_pkgs[!installed.packages()[, "Priority"] %in% c("base", "recommended")]
-user_pkgs
-
 # Pega todos os pacotes instalados
 ip <- installed.packages()
 
