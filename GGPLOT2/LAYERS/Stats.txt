@@ -1,0 +1,16 @@
+v1 | v2
+bin | Bin data
+boxplot | Calculate components of box-and-whisker plot
+contour | Contours of 3d data
+density | Density estimation, 1d
+density 2d | Density estimation, 2d
+function | Superimpose a function
+identity | Don’t transform data
+qq | Calculation for quantile-quantile plot
+quantile | Continuous quantiles
+smooth | Add a smoother
+spoke | Convert angle and radius to xend and yend
+step | Create stair steps
+sum | Sum unique values. Useful for overplotting on scatterplots
+summary | Summarise y values at every unique x
+unique | Remove duplicates
