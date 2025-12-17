@@ -40,3 +40,10 @@ install.packages("latticeExtra")
 sysreqs_check_installed("ggplot2")
 install.packages("ggplot2")
 
+#--------
+# psych -
+#--------
+
+sysreqs_check_installed("psych")
+install.packages("psych")
+

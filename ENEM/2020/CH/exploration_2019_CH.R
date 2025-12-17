@@ -2,7 +2,7 @@
 # Visualizando a Curva Característica do Teste (CCT) e a Curva de Informação do Teste (CIT) -
 # -------------------------------------------------------------------------------------------
 
-model_LC_pars <- readRDS("2019/LC/model_LC_pars.rds")
+model_CH_pars <- readRDS("2019/CH/model_CH_pars.rds")
 
 # Sem calibração
 # model_LC@Fit
@@ -29,7 +29,7 @@ model_LC_pars <- readRDS("2019/LC/model_LC_pars.rds")
 # mirt::plot(model_LC_pars, type = "info")
 # mirt::plot(model_LC_pars, type = "infoSE")
 # mirt::plot(model_LC_pars, type = "trace")
-mirt::plot(model_LC_pars, type = "infotrace")
+mirt::plot(model_CH_pars, type = "infotrace")
 # mirt::plot(model_LC_pars, type = "trace", facet_item = F)
 # mirt::plot(model_LC_pars, type = "infotrace", facet_item = F)
 
@@ -46,27 +46,25 @@ mirt::plot(model_LC_pars, type = "infotrace")
 # Escores e proeficiências -
 #---------------------------
 
-modelo_coef <- mirt::coef(model_LC_pars, simplify = TRUE, IRTpars = TRUE)
+modelo_coef <- mirt::coef(model_CH_pars, simplify = TRUE, IRTpars = TRUE)
 invalid_items <- which(abs(modelo_coef$items[, "b"]) > 6)
 modelo_coef$items[invalid_items, ] <- NA
 
-summary(modelo_coef$items)
-
 # número de itens do modelo
-n_itens <- extract.mirt(model_LC_pars, "nitems")
+n_itens <- extract.mirt(model_CH_pars, "nitems")
 w <- rep(1, n_itens)
 w[invalid_items] <- 0
 
 # estima proficiências ignorando esses itens
-prof_total <- fscores(model_LC_pars, method = "EAP", item_weights = w, na.rm = FALSE)
+prof_total <- fscores(model_CH_pars, method = "EAP", item_weights = w, na.rm = FALSE)
 prof_vector <- prof_total[, 1]
-LC_mat <- model_LC_pars@Data$data
-escore_vector <- as.vector(rowSums(LC_mat))
+CH_mat <- model_CH_pars@Data$data
+escore_vector <- as.vector(rowSums(CH_mat))
 
 # Encontra meus dados
 obs <- 132699
-min <- as.numeric(which(rowSums(LC_mat) == 0)[1])
-max <- as.numeric(which(rowSums(LC_mat) == 44)[1])
+min <- as.numeric(which(rowSums(CH_mat) == 0)[1])
+max <- as.numeric(which(rowSums(CH_mat) == 43)[1])
 var <- 1
 
 #--------------------------------------------
@@ -84,7 +82,7 @@ mirt::plot(prof_vector*100+500,
            escore_vector, 
            main = "Relação entre quantidade de acertos e proficiência", 
            xlab = "Proficiência", 
-           ylab = "Quantidade de acertos",
+           ylab = "Escore total bruto",
            # xlim = c(-4, 4),  # Ajustando o limite do eixo X para de -4 a 4
            ylim = c(min(escore_vector), max(escore_vector)),  # Ajuste automático do limite do eixo Y
            cex = 0.1,
@@ -103,16 +101,15 @@ cor(prof_vector, escore_vector, method = "pearson")
 # respondente precisa de uma proficiência de 2 para ter 50% de chance 
 # de acertar esse item
 
-itemplot(model_LC_pars, var)
+itemplot(model_CH_pars, var)
 modelo_coef$items[,2][var]
-coef_b_real[var]
 
 #---------------------------------------------------------
 # Encontrando preficiência e probabilidade para um theta -
 #---------------------------------------------------------
 
 # single item probabilty tracelines for Item 1
-extr_var <- extract.item(model_LC_pars, var)
+extr_var <- extract.item(model_CH_pars, var)
 Theta <- matrix(seq(-6,6, by = .01))
 traceline <- probtrace(extr_var, Theta)
 # Extraindo a coluna de probabilidade de acerto (por exemplo, P.0)
@@ -145,13 +142,13 @@ text(prof_especifico, prob_especifica, labels = rotulo,
 df_traceline <- list()
 Theta <- matrix(seq(-6, 6, by = 0.01))
 
-for (i in 1:ncol(LC_mat)) {
-  extr.i <- extract.item(model_LC_pars, i)
+for (i in 1:ncol(CH_mat)) {
+  extr.i <- extract.item(model_CH_pars, i)
   traceline <- probtrace(extr.i, Theta)  # probabilidade para todos os níveis de Theta
   # Seleciona a coluna correta com base no LC_mat
-  if (LC_mat[obs, i] == 1) {
+  if (CH_mat[obs, i] == 1) {
     prob_item <- traceline[, 2]  # P.1
-  } else if (LC_mat[obs, i] == 0) {
+  } else if (CH_mat[obs, i] == 0) {
     prob_item <- traceline[, 1]  # P.0
   }
   

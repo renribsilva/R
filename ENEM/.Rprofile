@@ -11,6 +11,7 @@ library(mirt)
 library(WrightMap)
 library(latticeExtra)
 library(ggplot2)
+library(psych)
 
 # Lista os pacotes carregados explicitamente com library() (sem criar objetos)
 message("✔️ Pacotes carregados: ", 

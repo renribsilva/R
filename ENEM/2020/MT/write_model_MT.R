@@ -2,19 +2,19 @@
 # Importa os sample.csv -
 #------------------------
 
-sample <- fread("2019/CH/sample_CH.csv")
-source("2019/priors.R")
+sample <- fread("2019/MT/sample_MT.csv")
 source("2019/process_area.R")
+source("2019/priors.R")
 
 #-----------------------------------
 # Cria a matriz de acertos e erros -
 #-----------------------------------
 
 # processa cada área
-CH_mat <- process_area(sample$TX_RESPOSTAS_CH, sample$TX_GABARITO_CH)
+MT_mat <- process_area(sample$TX_RESPOSTAS_MT, sample$TX_GABARITO_MT)
 
 # combina todas as áreas na ordem LC, CH, CN, MT
-colnames(CH_mat) <- paste0("q", 46:90)
+colnames(MT_mat) <- paste0("q", 136:180)
 
 #---------------------------------
 # Cria o modelo mirt 3PL para LC -
@@ -25,7 +25,7 @@ colnames(CH_mat) <- paste0("q", 46:90)
 
 mod <- 'F = 1-45'
 
-pars <- mirt(CH_mat, model = mod, itemtype = "3PL", pars = "values")
+pars <- mirt(MT_mat, model = mod, itemtype = "3PL", pars = "values")
 idx_a1 <- which(pars$name == "a1")
 idx_g <- which(pars$name == "g")
 idx_u <- which(pars$name == "u")
@@ -49,5 +49,5 @@ pars$prior_1[idx_u]   <- priors$p1[4]
 pars$prior_2[idx_u]   <- priors$p2[4]
 
 # modelo com calibração
-model_CH_pars <- mirt(CH_mat, model = mod, itemtype = "3PL", pars = pars)
-saveRDS(model_CH_pars, "2019/CH/model_CH_pars.rds")
+model_MT_pars <- mirt(MT_mat, model = mod, itemtype = "3PL", pars = pars)
+saveRDS(model_MT_pars, "2019/MT/model_MT_pars.rds")

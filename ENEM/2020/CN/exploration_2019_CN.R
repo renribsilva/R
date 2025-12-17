@@ -2,69 +2,69 @@
 # Visualizando a Curva Característica do Teste (CCT) e a Curva de Informação do Teste (CIT) -
 # -------------------------------------------------------------------------------------------
 
-model_LC_pars <- readRDS("2019/LC/model_LC_pars.rds")
+model_CN_pars <- readRDS("2019/CN/model_CN_pars.rds")
 
 # Sem calibração
-# model_LC@Fit
-# mirt::plot(model_LC)
-# mirt::plot(model_LC, type = "info")
-# mirt::plot(model_LC, type = "infoSE")
-# mirt::plot(model_LC, type = "trace")
-# mirt::plot(model_LC, type = "infotrace")
-# mirt::plot(model_LC, type = "trace", facet_item = F)
-# mirt::plot(model_LC, type = "infotrace", facet_item = F)
+# model_CN@Fit
+# mirt::plot(model_CN)
+# mirt::plot(model_CN, type = "info")
+# mirt::plot(model_CN, type = "infoSE")
+# mirt::plot(model_CN, type = "trace")
+# mirt::plot(model_CN, type = "infotrace")
+# mirt::plot(model_CN, type = "trace", facet_item = F)
+# mirt::plot(model_CN, type = "infotrace", facet_item = F)
 
-# model_LC_SE@Fit
-# mirt::plot(model_LC_SE, MI=200)
-# mirt::plot(model_LC_SE, type = "info", MI=200)
-# mirt::plot(model_LC_SE, type = "infoSE", MI=200)
-# mirt::plot(model_LC_SE, type = "trace", MI=200)
-# mirt::plot(model_LC_SE, type = "infotrace", MI=200)
-# mirt::plot(model_LC_SE, type = "trace", facet_item = F, MI=200)
-# mirt::plot(model_LC_SE, type = "infotrace", facet_item = F, MI=200)
+# model_CN_SE@Fit
+# mirt::plot(model_CN_SE, MI=200)
+# mirt::plot(model_CN_SE, type = "info", MI=200)
+# mirt::plot(model_CN_SE, type = "infoSE", MI=200)
+# mirt::plot(model_CN_SE, type = "trace", MI=200)
+# mirt::plot(model_CN_SE, type = "infotrace", MI=200)
+# mirt::plot(model_CN_SE, type = "trace", facet_item = F, MI=200)
+# mirt::plot(model_CN_SE, type = "infotrace", facet_item = F, MI=200)
 
 # Com calibração
-# model_LC_pars@Fit
-# mirt::plot(model_LC_pars)
-# mirt::plot(model_LC_pars, type = "info")
-# mirt::plot(model_LC_pars, type = "infoSE")
-# mirt::plot(model_LC_pars, type = "trace")
-mirt::plot(model_LC_pars, type = "infotrace")
-# mirt::plot(model_LC_pars, type = "trace", facet_item = F)
-# mirt::plot(model_LC_pars, type = "infotrace", facet_item = F)
+# model_CN_pars@Fit
+# mirt::plot(model_CN_pars)
+# mirt::plot(model_CN_pars, type = "info")
+# mirt::plot(model_CN_pars, type = "infoSE")
+# mirt::plot(model_CN_pars, type = "trace")
+mirt::plot(model_CN_pars, type = "infotrace")
+# mirt::plot(model_CN_pars, type = "trace", facet_item = F)
+# mirt::plot(model_CN_pars, type = "infotrace", facet_item = F)
 
-# model_LC_SE_pars@Fit
-# mirt::plot(model_LC_SE_pars, MI=200)
-# mirt::plot(model_LC_SE_pars, type = "info", MI=200)
-# mirt::plot(model_LC_SE_pars, type = "infoSE", MI=200)
-# mirt::plot(model_LC_SE_pars, type = "trace", MI=200)
-# mirt::plot(model_LC_SE_pars, type = "infotrace", MI=200)
-# mirt::plot(model_LC_SE_pars, type = "trace", facet_item = F, MI=200)
-# mirt::plot(model_LC_SE_pars, type = "infotrace", facet_item = F, MI=200)
+# model_CN_SE_pars@Fit
+# mirt::plot(model_CN_SE_pars, MI=200)
+# mirt::plot(model_CN_SE_pars, type = "info", MI=200)
+# mirt::plot(model_CN_SE_pars, type = "infoSE", MI=200)
+# mirt::plot(model_CN_SE_pars, type = "trace", MI=200)
+# mirt::plot(model_CN_SE_pars, type = "infotrace", MI=200)
+# mirt::plot(model_CN_SE_pars, type = "trace", facet_item = F, MI=200)
+# mirt::plot(model_CN_SE_pars, type = "infotrace", facet_item = F, MI=200)
 
 #---------------------------
 # Escores e proeficiências -
 #---------------------------
 
-modelo_coef <- mirt::coef(model_LC_pars, simplify = TRUE, IRTpars = TRUE)
+modelo_coef <- mirt::coef(model_CN_pars, simplify = TRUE, IRTpars = TRUE)
 invalid_items <- which(abs(modelo_coef$items[, "b"]) > 6)
 modelo_coef$items[invalid_items, ] <- NA
 
 # número de itens do modelo
-n_itens <- extract.mirt(model_LC_pars, "nitems")
+n_itens <- extract.mirt(model_CN_pars, "nitems")
 w <- rep(1, n_itens)
 w[invalid_items] <- 0
 
 # estima proficiências ignorando esses itens
-prof_total <- fscores(model_LC_pars, method = "EAP", item_weights = w, na.rm = FALSE)
+prof_total <- fscores(model_CN_pars, method = "EAP", item_weights = w, na.rm = FALSE)
 prof_vector <- prof_total[, 1]
-LC_mat <- model_LC_pars@Data$data
-escore_vector <- as.vector(rowSums(LC_mat))
+CN_mat <- model_CN_pars@Data$data
+escore_vector <- as.vector(rowSums(CN_mat))
 
 # Encontra meus dados
 obs <- 132699
-min <- as.numeric(which(rowSums(LC_mat) == 0)[1])
-max <- as.numeric(which(rowSums(LC_mat) == 44)[1])
+min <- as.numeric(which(rowSums(CN_mat) == 0)[1])
+max <- as.numeric(which(rowSums(CN_mat) == 43)[1])
 var <- 1
 
 #--------------------------------------------
@@ -101,16 +101,15 @@ cor(prof_vector, escore_vector, method = "pearson")
 # respondente precisa de uma proficiência de 2 para ter 50% de chance 
 # de acertar esse item
 
-itemplot(model_LC_pars, var)
+itemplot(model_CN_pars, var)
 modelo_coef$items[,2][var]
-coef_b_real[var]
 
 #---------------------------------------------------------
 # Encontrando preficiência e probabilidade para um theta -
 #---------------------------------------------------------
 
 # single item probabilty tracelines for Item 1
-extr_var <- extract.item(model_LC_pars, var)
+extr_var <- extract.item(model_CN_pars, var)
 Theta <- matrix(seq(-6,6, by = .01))
 traceline <- probtrace(extr_var, Theta)
 # Extraindo a coluna de probabilidade de acerto (por exemplo, P.0)
@@ -143,13 +142,13 @@ text(prof_especifico, prob_especifica, labels = rotulo,
 df_traceline <- list()
 Theta <- matrix(seq(-6, 6, by = 0.01))
 
-for (i in 1:ncol(LC_mat)) {
-  extr.i <- extract.item(model_LC_pars, i)
+for (i in 1:ncol(CN_mat)) {
+  extr.i <- extract.item(model_CN_pars, i)
   traceline <- probtrace(extr.i, Theta)  # probabilidade para todos os níveis de Theta
-  # Seleciona a coluna correta com base no LC_mat
-  if (LC_mat[obs, i] == 1) {
+  # Seleciona a coluna correta com base no CN_mat
+  if (CN_mat[obs, i] == 1) {
     prob_item <- traceline[, 2]  # P.1
-  } else if (LC_mat[obs, i] == 0) {
+  } else if (CN_mat[obs, i] == 0) {
     prob_item <- traceline[, 1]  # P.0
   }
   
@@ -239,10 +238,10 @@ escore_vector[max]
 # Contribuição que cada item tem na nota final, comparado ao seu oposto -
 #------------------------------------------------------------------------
 
-resp <- as.vector(LC_mat[obs,])
+resp <- as.vector(CN_mat[obs,])
 
 theta_full <- fscores(
-  model_LC_pars,
+  model_CN_pars,
   response.pattern = resp,  # <- vetor, não lista
   method = "EAP",
   item_weights = w
@@ -256,7 +255,7 @@ contrib <- sapply(seq_along(resp), function(i) {
   resp_alt[i] <- 1 - resp_alt[i]
   
   theta_alt <- fscores(
-    model_LC_pars,
+    model_CN_pars,
     response.pattern = resp_alt,
     method = "EAP",
     item_weights = w
