@@ -113,8 +113,10 @@ coef_b_real[var]
 
 # single item probabilty tracelines for Item 1
 extr_var <- extract.item(model_LC_pars, var)
+extr_var
 Theta <- matrix(seq(-6,6, by = .01))
 traceline <- probtrace(extr_var, Theta)
+traceline
 # Extraindo a coluna de probabilidade de acerto (por exemplo, P.0)
 prob_acerto <- traceline[, 2]  # Probabilidade de acerto
 # Selecionando um valor de Theta específico (por exemplo, Theta = 1)
@@ -159,12 +161,17 @@ for (i in 1:ncol(LC_mat)) {
   df_traceline[[i]] <- data.frame(Probabilidade = prob_item, Theta = Theta)
 }
 
+df_traceline
+
 # Número de Theta
 n_theta <- length(df_traceline[[1]]$Theta)
 n_itens <- length(df_traceline)
 # Inicializa o vetor para o produto das probabilidades
 prod_prob <- numeric(n_theta)
-
+probs_j <- sapply(df_traceline, function(df) df$Probabilidade[1])
+probs_j
+df_traceline[[2]]$Probabilidade[1]
+df_traceline[[1]]
 # Loop sobre cada nível de Theta
 for (j in 1:n_theta) {
   # Extrai as probabilidades do j-ésimo Theta para todos os itens
@@ -173,6 +180,7 @@ for (j in 1:n_theta) {
   prod_prob[j] <- prod(probs_j)
 }
 
+prod_prob
 # Cria o data.frame final
 prod_itens <- data.frame(Theta = df_traceline[[1]]$Theta, Probabilidade = prod_prob)
 prod_itens
