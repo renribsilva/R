@@ -3,6 +3,17 @@
 #------------------------
 
 table <- fread("2019/MICRODADOS/microdados_enem_2019/DADOS/MICRODADOS_ENEM_2019.csv")
+table <- table %>%
+  dplyr::select(-NU_INSCRICAO, -NU_ANO,
+                -TP_ESTADO_CIVIL, -TP_NACIONALIDADE,
+                -TP_ST_CONCLUSAO, -TP_ANO_CONCLUIU,
+                -TP_ENSINO, -CO_MUNICIPIO_ESC, -NO_MUNICIPIO_ESC, 
+                -CO_UF_ESC, -SG_UF_ESC, -TP_DEPENDENCIA_ADM_ESC,
+                -TP_LOCALIZACAO_ESC, -TP_SIT_FUNC_ESC,
+                -Q001, -Q002, -Q003, -Q004, -Q005, -Q006, -Q007, 
+                -Q008, -Q009, -Q010, -Q011, -Q012, -Q013, -Q014, 
+                -Q015, -Q016, -Q017, -Q018, -Q019, -Q020, -Q021,
+                -Q022, -Q023, -Q024, -Q025)
 
 batch_size <- 50000
 total_rows <- nrow(table)
@@ -19,7 +30,7 @@ for (i in 1:num_batches) {
     TP_PRESENCA_CH == 1 &
     TP_PRESENCA_CN == 1 &
     TP_PRESENCA_MT == 1 &
-    TP_LINGUA == 0 & 
+    IN_TREINEIRO == 0 &
     (CO_PROVA_LC == 511 | CO_PROVA_LC == 512 | CO_PROVA_LC == 513 | CO_PROVA_LC == 514) &
     (CO_PROVA_CH == 507 | CO_PROVA_CH == 508 | CO_PROVA_CH == 509 | CO_PROVA_CH == 510) &
     (CO_PROVA_CN == 503 | CO_PROVA_CN == 504 | CO_PROVA_CN == 505 | CO_PROVA_CN == 506) &
