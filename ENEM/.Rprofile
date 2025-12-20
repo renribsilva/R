@@ -29,7 +29,7 @@ if (length(faltantes) > 0) {
     strrep("-", 60), "\n",
     " Os seguintes pacotes precisam ser instalados:\n",
     paste("- ", faltantes, collapse = "\n"),
-    "\n\n 👉 Comando para instalar:\n",
+    "\n\n 👉 Feche o projeto e execute a instalação:\n",
     " install.packages(c(", paste0("'", faltantes, "'", collapse = ", "), "))\n",
     strrep("!", 60), "\n"
   ), call. = FALSE)
