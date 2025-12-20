@@ -29,8 +29,8 @@ if (length(faltantes) > 0) {
     strrep("-", 60), "\n",
     " Os seguintes pacotes precisam ser instalados:\n",
     paste("- ", faltantes, collapse = "\n"),
-    "\n\n 👉 Feche o projeto e execute a instalação em /PACKAGES/installed_packages.R:\n",
-    " install.packages(c(", paste0("'", faltantes, "'", collapse = ", "), "))\n",
+    "\n\n 👉 Feche o projeto e execute a instalação em /PACKAGES/installed_packages.R dos seguintes pacotes:\n",
+    paste0("'", faltantes, "'", collapse = ", "), "))\n",
     strrep("!", 60), "\n"
   ), call. = FALSE)
 }
