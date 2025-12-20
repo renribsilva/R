@@ -10,8 +10,5 @@ install.packages("tidyverse")
 # ENEM -
 #-------
 
-install.packages("mirt")
-install.packages("WrightMap")
-install.packages("latticeExtra")
-install.packages("psych")
+install.packages(c("mirt", "WrightMap", "latticeExtra", "psych"))
 
