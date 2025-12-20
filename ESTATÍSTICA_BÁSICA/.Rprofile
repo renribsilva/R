@@ -1,27 +1,51 @@
-# Define o diretório de trabalho como a raiz do projeto
+# ==============================================================================
+# CONFIGURAÇÃO DO AMBIENTE - PROJETO ENEM
+# ==============================================================================
+
+# 1. Definição do Diretório de Trabalho
+# ------------------------------------------------------------------------------
 setwd("~/Área de trabalho/DEV/R/ESTATÍSTICA_BÁSICA")
 
-# Mensagem opcional
-message("✔️ O projeto '", basename(getwd()),"' foi carregado com sucesso. O diretório de trabalho é: ", getwd())
+# 2. Gerenciamento de Pacotes
+# ------------------------------------------------------------------------------
+pacotes_necessarios <- c()
 
-# Carregamento automático de pacotes (opcional)
-library(dplyr)
-library(ggplot2)
-library(readxl)
-library(magrittr)
-library(forcats)
-library(tibble)
-library(cowplot)
-library(aplpack)
-library(knitr)
-library(zoo)
+# Identifica pacotes que não estão instalados
+faltantes <- pacotes_necessarios[!(pacotes_necessarios %in% utils::installed.packages()[, "Package"])]
 
-# Lista os pacotes carregados explicitamente com library() (sem criar objetos)
-message("✔️ Pacotes carregados: ", 
-        paste(setdiff(gsub("^package:", "", grep("^package:", search(), value = TRUE)),
-                      c("stats", "graphics", "grDevices", "utils", "datasets", "methods", "base")),
-              collapse = ", "))
+# Verifica se há pendências e exibe erro amigável
+if (length(faltantes) > 0) {
+  stop(paste0(
+    "\n", strrep("!", 60), "\n",
+    " ❌ ERRO: PACOTES NÃO ENCONTRADOS!\n",
+    strrep("-", 60), "\n",
+    " Os seguintes pacotes precisam ser instalados:\n",
+    paste("- ", faltantes, collapse = "\n"),
+    "\n\n 👉 Comando para instalar:\n",
+    " install.packages(c(", paste0("'", faltantes, "'", collapse = ", "), "))\n",
+    strrep("!", 60), "\n"
+  ), call. = FALSE)
+}
 
+# Carregamento silencioso dos pacotes
+invisible(
+  suppressPackageStartupMessages(
+    lapply(pacotes_necessarios, library, character.only = TRUE)))
 
-# Opções globais (exemplo: nunca mostrar notação científica)
-# options(scipen = 999)
+# 3. Mensagens de Status (Visual Formatado)
+# ------------------------------------------------------------------------------
+message("\n", strrep("=", 70))
+message("  🚀 PROJETO: ", basename(getwd()))
+message("  📂 DIRETÓRIO: ", getwd())
+message(strrep("-", 70))
+message("  📦 PACOTES CARREGADOS:")
+
+# Filtra para mostrar apenas o que está no vetor 'pacotes_necessarios'
+message("  ", paste(intersect(pacotes_necessarios, 
+                              gsub("^package:", "", grep("^package:", search(), value = TRUE))),
+                    collapse = " • "))
+
+message(strrep("=", 70), "\n")
+
+# Remove os objetos para manter o ambiente limpo
+rm(pacotes_necessarios, faltantes)
