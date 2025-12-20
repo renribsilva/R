@@ -1,49 +1,17 @@
-#-----------------------------------------
-# Gerenciador de dependências dos pacotes-
-#-----------------------------------------
+# Os pacotes devem ser instalados fora do workspace
 
-install.packages("pak")
-library(pak)
+#--------
+# GERAL -
+#--------
 
-#-----------
-# Tidyverse-
-#-----------
-
-sysreqs_check_installed("tidyverse")
 install.packages("tidyverse")
 
-#-----------
-# Mirt-
-#-----------
+#-------
+# ENEM -
+#-------
 
-sysreqs_check_installed("mirt")
 install.packages("mirt")
-
-#-----------
-# wrightMap-
-#-----------
-
-sysreqs_check_installed("WrightMap")
 install.packages("WrightMap")
-
-#-----------
-# latticeExtra-
-#-----------
-
-sysreqs_check_installed("latticeExtra")
 install.packages("latticeExtra")
-
-#----------
-# ggplot2 -
-#----------
-
-sysreqs_check_installed("ggplot2")
-install.packages("ggplot2")
-
-#--------
-# psych -
-#--------
-
-sysreqs_check_installed("psych")
 install.packages("psych")
 
