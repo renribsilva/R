@@ -6,15 +6,15 @@ process_area <- function(respostas, gabarito) {
     x
   })
   # transforma gabarito em lista de vetores
-  g <- strsplit(gabarito, "")
+  s <- strsplit(gabarito, "")
   # compara e transforma TRUE/FALSE em 1/0 mantendo NA
-  comp_list <- mapply(function(r, g) {
-    if (length(r) != length(g)) {
+  comp_list <- mapply(function(r, s) {
+    if (length(r) != length(s)) {
       stop("Erro: respostas e gabarito com comprimentos diferentes.")
     }
-    res <- r == g
+    res <- r == s
     as.integer(res)
-  }, r, g, SIMPLIFY = FALSE)
+  }, r, s, SIMPLIFY = FALSE)
   # junta em matriz
   mat <- do.call(rbind, comp_list)
   # substitui todos os NA por 0

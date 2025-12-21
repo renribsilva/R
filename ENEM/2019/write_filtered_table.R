@@ -26,15 +26,11 @@ for (i in 1:num_batches) {
   end_row <- min(i*batch_size, total_rows)
   dados_batch <- table[start_row:end_row]
   dados_batch_filtered <- dados_batch[
-    TP_PRESENCA_LC == 1 &
-    TP_PRESENCA_CH == 1 &
-    TP_PRESENCA_CN == 1 &
-    TP_PRESENCA_MT == 1 &
     IN_TREINEIRO == 0 &
-    (CO_PROVA_LC == 511 | CO_PROVA_LC == 512 | CO_PROVA_LC == 513 | CO_PROVA_LC == 514) &
-    (CO_PROVA_CH == 507 | CO_PROVA_CH == 508 | CO_PROVA_CH == 509 | CO_PROVA_CH == 510) &
-    (CO_PROVA_CN == 503 | CO_PROVA_CN == 504 | CO_PROVA_CN == 505 | CO_PROVA_CN == 506) &
-    (CO_PROVA_MT == 515 | CO_PROVA_MT == 516 | CO_PROVA_MT == 517 | CO_PROVA_MT == 518)
+    (CO_PROVA_LC == 511 | CO_PROVA_LC == 512 | CO_PROVA_LC == 513 | CO_PROVA_LC == 514 | CO_PROVA_LC == 521 | CO_PROVA_LC == 525) &
+    (CO_PROVA_CH == 507 | CO_PROVA_CH == 508 | CO_PROVA_CH == 509 | CO_PROVA_CH == 510 | CO_PROVA_LC == 520 | CO_PROVA_LC == 524) &
+    (CO_PROVA_CN == 503 | CO_PROVA_CN == 504 | CO_PROVA_CN == 505 | CO_PROVA_CN == 506 | CO_PROVA_LC == 519 | CO_PROVA_LC == 523) &
+    (CO_PROVA_MT == 515 | CO_PROVA_MT == 516 | CO_PROVA_MT == 517 | CO_PROVA_MT == 518 | CO_PROVA_LC == 522 | CO_PROVA_LC == 526)
 ]
   table_filtered <- rbindlist(list(table_filtered, dados_batch_filtered))
   cat("Batch", i, "de", num_batches, "processado", "(",start_row, " até ", end_row,")\n")

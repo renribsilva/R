@@ -1,5 +1,3 @@
-# Os pacotes devem ser instalados fora do workspace
-
 #--------
 # GERAL -
 #--------

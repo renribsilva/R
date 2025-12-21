@@ -3,6 +3,10 @@
 #--------------------------------
 
 filtered <- fread("2019/MICRODADOS/table_filtered.csv")
+filtered <- filtered %>%
+  dplyr::filter(NU_NOTA_LC != 0) %>%
+  dplyr::filter(TP_PRESENCA == 1)
+
 source("2019/process_area.R")
 
 #----------------------------------

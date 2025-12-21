@@ -1,156 +1,19 @@
 #--------------------------------
-# Importa os table_filtered.csv -
+# Importa os table_filtered_norm.csv -
 #--------------------------------
 
-filtered <- fread("2019/MICRODADOS/table_filtered.csv")
+filtered_norm <- fread("2019/MICRODADOS/filtered_norm_LC.csv")
 source("2019/process_area.R")
 
-filtered <- filtered %>%
-  dplyr::filter(NU_NOTA_LC != 0) %>%
-  dplyr::filter(NU_NOTA_CH != 0) %>%
-  dplyr::filter(NU_NOTA_CN != 0) %>%
-  dplyr::filter(NU_NOTA_MT != 0)
-
-
-filtered <- filtered %>%
-  dplyr::filter(TP_LINGUA == 0)
-
-#----------------------------------
-# Importa os parâmetros dos itens -
-#----------------------------------
-
-itens_2019 <- fread(input='2019/MICRODADOS/microdados_enem_2019/DADOS/ITENS_PROVA_2019.csv')
-
-itens_2019_filtered <- itens_2019 %>%
-  dplyr::filter(CO_PROVA == 511 | CO_PROVA == 512 | CO_PROVA == 513 | CO_PROVA == 514 |
-                CO_PROVA == 507 | CO_PROVA == 508 | CO_PROVA == 509 | CO_PROVA == 510 |
-                CO_PROVA == 503 | CO_PROVA == 504 | CO_PROVA == 505 | CO_PROVA == 506 |
-                CO_PROVA == 515 | CO_PROVA == 516 | CO_PROVA == 517 | CO_PROVA == 518 )
-
-#----------------------------------
-# Normaliza o vetor de linguagens -
-#----------------------------------
-
-# Vetores lógicos para decidir transformação
-cond_L0 <- filtered$TP_LINGUA == 0 & nchar(filtered$TX_GABARITO_LC) > 45
-cond_L1 <- filtered$TP_LINGUA == 1 & nchar(filtered$TX_GABARITO_LC) > 45
-
-# Sempre remover "9" das respostas onde as condições forem verdade
-cond_total <- cond_L0 | cond_L1
-filtered$TX_RESPOSTAS_LC[cond_total] <- gsub("9", "", filtered$TX_RESPOSTAS_LC[cond_total])
-
-# Ajuste do gabarito para TP_LINGUA == 0
-filtered$TX_GABARITO_LC[cond_L0] <- paste0(
-  substr(filtered$TX_GABARITO_LC[cond_L0], 1, 5),
-  substr(filtered$TX_GABARITO_LC[cond_L0], 11, 9999)
-)
-
-# Ajuste do gabarito para TP_LINGUA == 1
-filtered$TX_GABARITO_LC[cond_L1] <- substr(filtered$TX_GABARITO_LC[cond_L1], 6, 9999)
-
-#----------------------------------------------------------------------
-# Normaliza o vetor de repostas tendo como referência a prova amarela -
-#----------------------------------------------------------------------
-
-# Linguagens
-LC_provas <- list(
-  azul    = 511,
-  amarela = 512,
-  rosa    = 513,
-  branca  = 514
-)
-
-seq_code_LC <- list(
-  azul = itens_2019_filtered %>%
-    dplyr::filter(CO_PROVA == LC_provas$azul) %>%
-    dplyr::filter(TP_LINGUA == 0 | is.na(TP_LINGUA)) %>%
-    dplyr::arrange(CO_POSICAO),
-  
-  rosa = itens_2019_filtered %>%
-    dplyr::filter(CO_PROVA == LC_provas$rosa) %>%
-    dplyr::filter(TP_LINGUA == 0 | is.na(TP_LINGUA)) %>%
-    dplyr::arrange(CO_POSICAO),
-  
-  branca = itens_2019_filtered %>%
-    dplyr::filter(CO_PROVA == LC_provas$branca) %>%
-    dplyr::filter(TP_LINGUA == 0 | is.na(TP_LINGUA)) %>%
-    dplyr::arrange(CO_POSICAO),
-  
-  amarela = itens_2019_filtered %>%
-    dplyr::filter(CO_PROVA == LC_provas$amarela) %>%
-    dplyr::filter(TP_LINGUA == 0 | is.na(TP_LINGUA)) %>%
-    dplyr::arrange(CO_POSICAO)
-)
-
-gab_amarela <- filtered[which(filtered$CO_PROVA_LC == 512)[1],]$TX_GABARITO_LC
-
-for (i in seq_len(nrow(filtered))) {
-  
-  prova_origem <- filtered[i, ]$CO_PROVA_LC
-  
-  if (prova_origem %in% c(LC_provas$azul, LC_provas$rosa, LC_provas$branca)) {
-    
-    seq_origem <- switch(
-      as.character(prova_origem),
-      "511" = seq_code_LC$azul,
-      "513" = seq_code_LC$rosa,
-      "514" = seq_code_LC$branca
-    )
-    
-    new_TX_RESPOSTAS_LC <- character(nrow(seq_code_LC$amarela))
-    g <- strsplit(filtered[i, ]$TX_RESPOSTAS_LC, "")[[1]]
-    
-    for (k in seq_len(nrow(seq_code_LC$amarela))) {
-      
-      index <- match(
-        seq_code_LC$amarela$CO_ITEM[k],
-        seq_origem$CO_ITEM
-      )
-      
-      if (is.na(index)) {
-        stop(sprintf(
-          "Erro: CO_ITEM %s não encontrado na prova %s.",
-          seq_code_LC$amarela$CO_ITEM[k],
-          prova_origem
-        ))
-      }
-      
-      new_TX_RESPOSTAS_LC[k] <- g[index]
-    }
-    
-    score1 <- process_area(
-      paste0(new_TX_RESPOSTAS_LC, collapse = ""),
-      gab_amarela
-    )
-    
-    score2 <- process_area(
-      filtered[i, ]$TX_RESPOSTAS_LC,
-      filtered[i, ]$TX_GABARITO_LC
-    )
-    
-    if (sum(score1) == sum(score2)) {
-      filtered[i, ]$TX_GABARITO_LC <- gab_amarela
-      filtered[i, ]$TX_RESPOSTAS_LC <- paste0(new_TX_RESPOSTAS_LC, collapse = "")
-    } else {
-      stop(sprintf(
-        "Erro: Score1 é diferente de score2",
-        sum(score1),
-        sum(score2)
-      ))
-    }
-  }
-  cat("Linha processada:", i, "\n")
-}
-
-#-----------------------------------------------------
-# Relação entre quantidade de acertos e proficiência -
-#-----------------------------------------------------
+#--------------------------------
+# Matriz de acertos e respostas -
+#--------------------------------
 
 # Cria matriz de binários para os acertos
-LC_mat <- process_area(filtered$TX_RESPOSTAS_LC, filtered$TX_GABARITO_LC)
+LC_mat <- process_area(filtered_norm$TX_RESPOSTAS_LC, filtered_norm$TX_GABARITO_LC)
 
 # Plota a distribuição
-mirt::plot(filtered$NU_NOTA_LC, 
+mirt::plot(filtered_norm$NU_NOTA_LC, 
            rowSums(LC_mat), 
            main = "Relação entre quantidade de acertos e proficiência", 
            xlab = "Proficiência", 
@@ -168,7 +31,7 @@ abline(h = 33, lty = 2, lwd = 0.5, col = 'gray')
 #-------------
 
 # Encontra meus dados
-my_data <- filtered %>%
+my_data <- filtered_norm %>%
   dplyr::filter(NU_NOTA_LC == 628.7) %>%
   dplyr::filter(NO_MUNICIPIO_PROVA == "Votuporanga")
 
@@ -178,7 +41,7 @@ my_test <- my_data$CO_PROVA_LC
 
 my_prof <- (my_data$NU_NOTA_LC - 500) / 100
 
-my_pars <- itens_2019_filtered %>%
+my_pars <- itens_2019_filtered_norm %>%
   dplyr::filter(CO_PROVA == my_test) %>%
   dplyr::filter(TP_LINGUA == 0 | is.na(TP_LINGUA)) %>%
   arrange(CO_POSICAO)
@@ -187,7 +50,7 @@ my_pars <- itens_2019_filtered %>%
 # Resumo estatístico das notas de linguagens -
 #---------------------------------------------
 
-describe(filtered$NU_NOTA_LC)
+describe(filtered_norm$NU_NOTA_LC)
 
 #---------------------------------------------------------------
 # Traceline de probabilidades de erro e acerto de cada questão -
@@ -330,4 +193,3 @@ theta_EAP*100 + 500  # transformação para escala ENEM
 abline(v = theta_EAP*100+500, lty = 2, lwd = 1)
 text(theta_EAP*100+500, max(posterior)*0.9, labels = paste0("Proeficiência = ", round(theta_EAP*100+500,3)),
      pos = 4)
-
