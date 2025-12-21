@@ -5,10 +5,6 @@
 filtered <- fread("2019/MICRODADOS/table_filtered.csv")
 source("2019/process_area.R")
 
-filtered <- filtered %>%
-  dplyr::filter(NU_NOTA_LC != 0) %>%
-  dplyr::filter(TP_PRESENCA_LC == 1)
-
 n <- nrow(filtered)
 
 #----------------------------------
