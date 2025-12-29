@@ -1,0 +1,6 @@
+v1 | v2
+dodge | Adjust position by dodging overlaps to the side
+fill | Stack overlapping objects and standardise have equal height
+identity | Don’t adjust position
+jitter | Jitter points to avoid overplotting
+stack | Stack overlapping objects on top of one anotheres

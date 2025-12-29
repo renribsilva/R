@@ -1,0 +1,6 @@
+Aesthetic | Discrete | Continuous
+Colour and fill | brewer, grey, hue*, identity, manual | gradient*, gradient2, gradientn
+Position (x, y) | discrete* | continuous*, date
+Shape | shape*, identity, manual
+Line type | linetype*, identity, manual
+Size | identity, manual | size*

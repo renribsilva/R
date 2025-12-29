@@ -1,0 +1,13 @@
+Aesthetic | Default value | Geoms
+colour | #3366FF | contour, density2d, quantile, smooth
+colour | NA | area, bar, histogram, polygon, rect, tile
+colour | black | abline, crossbar, density, errorbar, hline, line, linerange, path, pointrange, rug, segment, step, text, vline
+colour | darkblue | jitter, point
+colour | grey60 | boxplot, ribbon
+fill | NA | crossbar, density, jitter, point, pointrange
+fill | grey20 | area, bar, histogram, polygon, rect, ribbon, tile
+linetype | 1 | abline, area, bar, contour, crossbar, density, density2d, errorbar, histogram, hline, line, linerange, path, pointrange, polygon, quantile, rect, ribbon, rug, segment, smooth, step, tile, vline
+shape | 19 | jitter, point, pointrange
+size | 0.5 | abline, area, bar, boxplot, contour, crossbar, density, density2d, errorbar, histogram, hline, line, linerange, path, pointrange, polygon, quantile, rect, ribbon, rug, segment, smooth, step, vline
+size | 2 | jitter, point
+weight | 1 | bar, boxplot, contour, density, density2d, histogram, quantile, smooth
